@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  Navigation App
+//  Navigation
 //
-//  Created by Matvey Krasnov on 12.8.24..
+//  Created by Matvey Krasnov on 5.8.24..
 //
 
 import UIKit
@@ -13,17 +13,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        guard let windowScene = ( scene as? UIWindowScene) else { return }
+        
+        window = UIWindow(windowScene: windowScene)
+        
+        let tabBarController = UITabBarController()
+        let feedNavigationController = UINavigationController()
+        let profileNavigationController = UINavigationController()
+        
+        feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag:  0)
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag:  1)
+        
+        feedNavigationController.viewControllers = [FeedViewController()]
+        
+        profileNavigationController.viewControllers = [ProfileViewController()]
+        
+        tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
+        // Use this method to optionally configure and attach the UIWindow window to the provided UIWindowScene scene.
+        // If using a storyboard, the window property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see application:configurationForConnectingSceneSession instead).
+        //guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        // The scene may re-connect later, as its session was not necessarily discarded (see application:didDiscardSceneSessions instead).
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -49,4 +70,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

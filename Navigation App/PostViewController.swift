@@ -39,7 +39,7 @@ class PostViewController: UIViewController {
     
     @objc func showInfo() {
         let infoVC = UINavigationController()
-        
+        infoVC.navigationBar.backgroundColor = .white
         infoVC.viewControllers = [InfoViewController()]
         infoVC.modalPresentationStyle = .pageSheet
         infoVC.modalTransitionStyle = .coverVertical

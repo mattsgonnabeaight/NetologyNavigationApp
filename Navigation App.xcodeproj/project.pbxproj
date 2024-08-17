@@ -15,7 +15,8 @@
 		901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5222C69D52900AC0157 /* InfoViewController.swift */; };
 		901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5242C69D55100AC0157 /* PostViewController.swift */; };
 		901EB5272C69D57100AC0157 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5262C69D57100AC0157 /* FeedViewController.swift */; };
-		901EB5292C69D58B00AC0157 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5282C69D58B00AC0157 /* ProfileViewController.swift */; };
+		901EB52C2C69D91100AC0157 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */; };
+		901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 		901EB5222C69D52900AC0157 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		901EB5242C69D55100AC0157 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		901EB5262C69D57100AC0157 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		901EB5282C69D58B00AC0157 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		901EB50D2C69D4E300AC0157 /* Navigation App */ = {
 			isa = PBXGroup;
 			children = (
+				901EB52A2C69D8E300AC0157 /* Profile */,
 				901EB50E2C69D4E300AC0157 /* AppDelegate.swift */,
 				901EB5102C69D4E300AC0157 /* SceneDelegate.swift */,
 				901EB5122C69D4E300AC0157 /* ViewController.swift */,
@@ -70,10 +73,18 @@
 				901EB51C2C69D4E500AC0157 /* Info.plist */,
 				901EB5222C69D52900AC0157 /* InfoViewController.swift */,
 				901EB5242C69D55100AC0157 /* PostViewController.swift */,
-				901EB5282C69D58B00AC0157 /* ProfileViewController.swift */,
 				901EB5262C69D57100AC0157 /* FeedViewController.swift */,
 			);
 			path = "Navigation App";
+			sourceTree = "<group>";
+		};
+		901EB52A2C69D8E300AC0157 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */,
+				901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,9 +161,10 @@
 				901EB50F2C69D4E300AC0157 /* AppDelegate.swift in Sources */,
 				901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */,
 				901EB5112C69D4E300AC0157 /* SceneDelegate.swift in Sources */,
-				901EB5292C69D58B00AC0157 /* ProfileViewController.swift in Sources */,
 				901EB5272C69D57100AC0157 /* FeedViewController.swift in Sources */,
+				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
 				901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */,
+				901EB52C2C69D91100AC0157 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +320,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Test.Navigation-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mkrasnov.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -335,7 +347,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Test.Navigation-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mkrasnov.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

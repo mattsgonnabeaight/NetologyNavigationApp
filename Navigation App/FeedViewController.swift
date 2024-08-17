@@ -11,7 +11,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .lightGray
+        self.view.backgroundColor = .darkGray
         
         let postButton : UIButton = {
             let button = UIButton(type: .system)

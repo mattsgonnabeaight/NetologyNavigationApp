@@ -8,27 +8,14 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    
-    let profileBackgroundView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
-    
-    
     let profileImage: UIImageView = {
         let image = UIImage(named: "profileImage")
-        
         let imageView = ProfileAvatarRounded(image: image!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.masksToBounds = true
         imageView.cornerRadius = 65.0
-        
         return imageView
     }()
     
@@ -67,57 +54,52 @@ class ProfileHeaderView: UIView {
         print("button pressed")
     }
     
-    func setupContraints(view: UIView) {
-        let width = UIScreen.main.bounds.width
-        let safeAreaGuide = view.safeAreaLayoutGuide
-        view.backgroundColor = .white
-        view.addSubview(profileBackgroundView)
-        profileBackgroundView.addSubview(profileImage)
-        profileBackgroundView.addSubview(fullNameLabel)
-        profileBackgroundView.addSubview(someLabel)
-        profileBackgroundView.addSubview(statusButton)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .white
+        setupSubviews()
+        setupContraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupSubviews() {
+        self.addSubview(profileImage)
+        self.addSubview(fullNameLabel)
+        self.addSubview(someLabel)
+        self.addSubview(statusButton)
+    }
+    
+    func setupContraints() {
+        
+        
+        NSLayoutConstraint.activate([
+            profileImage.heightAnchor.constraint(equalToConstant: 130.0),
+            profileImage.widthAnchor.constraint(equalToConstant: 130.0),
+            profileImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
+            profileImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16.0),
             
-            NSLayoutConstraint.activate([
-                profileBackgroundView.heightAnchor.constraint(equalToConstant: 220.0),
-                profileBackgroundView.widthAnchor.constraint(equalToConstant: width),
-                profileBackgroundView.centerXAnchor.constraint(equalTo: safeAreaGuide.centerXAnchor),
-                profileBackgroundView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            fullNameLabel.widthAnchor.constraint(equalToConstant: 100.0),
+            fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20.0),
+            fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27.0),
+
+            someLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            someLabel.widthAnchor.constraint(equalToConstant: 200.0),
+            someLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34.0),
+            someLabel.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -30.0),
                 
-                profileImage.heightAnchor.constraint(equalToConstant: 130.0),
-                profileImage.widthAnchor.constraint(equalToConstant: 130.0),
-                profileImage.leadingAnchor.constraint(equalTo: profileBackgroundView.leadingAnchor, constant: 16.0),
-                profileImage.topAnchor.constraint(equalTo: profileBackgroundView.topAnchor, constant: 16.0),
-                
-                fullNameLabel.heightAnchor.constraint(equalToConstant: 20.0),
-                fullNameLabel.widthAnchor.constraint(equalToConstant: 100.0),
-                fullNameLabel.topAnchor.constraint(equalTo: profileBackgroundView.topAnchor, constant: 27.0),
-                fullNameLabel.leadingAnchor.constraint(equalTo: profileBackgroundView.centerXAnchor, constant: -30.0),
-                
-                someLabel.heightAnchor.constraint(equalToConstant: 20.0),
-                someLabel.widthAnchor.constraint(equalToConstant: 200.0),
-                someLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34.0),
-                someLabel.leadingAnchor.constraint(equalTo: profileBackgroundView.centerXAnchor, constant: -30.0),
-                
-                statusButton.heightAnchor.constraint(equalToConstant: 50),
-                statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16.0),
-                statusButton.leadingAnchor.constraint(equalTo: profileBackgroundView.leadingAnchor, constant: 16.0),
-                statusButton.trailingAnchor.constraint(equalTo: profileBackgroundView.trailingAnchor, constant: -16.0),
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16.0),
+            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
+            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
             ])
         }
-        
-        
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
 
 extension UIView {
-
     func dropShadow(scale: Bool = true) {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
@@ -129,7 +111,6 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
       }
-
 }
 
 class ProfileAvatarRounded: UIImageView {

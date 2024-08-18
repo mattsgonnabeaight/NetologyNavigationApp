@@ -14,20 +14,15 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.backgroundColor = .white
+        self.view.backgroundColor = .red
         self.title = "Profile"
-        view.addSubview(profileHeaderView.profileBackgroundView)
-        profileHeaderView.setupContraints(view: view)
-        // Do any additional setup after loading the view.
+        view.addSubview(profileHeaderView)
+        profileHeaderView.frame = view.frame
+        /**
+         "Далее в ProfileViewController нужно уже закрепить констрейнтами profileHeaderView."
+         Без задания отдельного вью бэкграунда в profileHeaderView - это не работает.
+         Компилятор ругается на конфликтующие между собой констрейнты, даже со всеми закомментированными элементами не подгружается даже бг колор.
+         Если это требуется для сдачи конкретно этого дз, прошу описать, в чем моя ошибка в дискорде
+         */
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

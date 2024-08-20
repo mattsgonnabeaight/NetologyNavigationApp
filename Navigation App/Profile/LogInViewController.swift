@@ -47,14 +47,14 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    let passwordTextField : UITextField = {
+    private lazy var passwordTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 10
         textField.placeholder = "Password"
         textField.isSecureTextEntry = true
-        //textField.delegate = self
+        textField.delegate = self
         return textField
     }()
     

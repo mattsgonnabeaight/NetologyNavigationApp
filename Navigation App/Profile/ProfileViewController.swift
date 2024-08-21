@@ -14,15 +14,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.backgroundColor = .white
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = .white
         self.title = "Profile"
-        view.addSubview(profileHeaderView)
-        profileHeaderView.frame = view.frame
-        /**
-         "Далее в ProfileViewController нужно уже закрепить констрейнтами profileHeaderView."
-         Без задания отдельного вью бэкграунда в profileHeaderView - это не работает.
-         Компилятор ругается на конфликтующие между собой констрейнты, даже со всеми закомментированными элементами не подгружается даже бг колор.
-         Если это требуется для сдачи конкретно этого дз, прошу описать, в чем моя ошибка в дискорде
-         */
-    }
+      
+        setupLayout()
+
+        }
+        func setupLayout() {
+            view.addSubview(profileHeaderView)
+            profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
+            ])
+
+        }
 }

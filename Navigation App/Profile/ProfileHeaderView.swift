@@ -8,33 +8,14 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    
-    let profileBackgroundView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.frame = CGRect(
-                x: 0.0,
-                y: 90.0,
-                width: 1000.0,
-                height: 1000.0
-        )
-        return view
-    }()
-    
     let profileImage: UIImageView = {
-        //let imageName = "profileImage"
         let image = UIImage(named: "profileImage")
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(
-                x: 16.0,
-                y: 116.0,
-                width: 130.0,
-                height: 130.0
-        )
+        let imageView = ProfileAvatarRounded(image: image!)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 3
-        imageView.layer.masksToBounds = true
         imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.layer.masksToBounds = true
+        imageView.cornerRadius = 65.0
         return imageView
     }()
     
@@ -44,17 +25,7 @@ class ProfileHeaderView: UIView {
         label.textColor = .black
         label.text = "Hipster Cat"
         label.numberOfLines = 0
-        //label.translatesAutoresizingMaskIntoConstraints = false
-        label.frame = CGRect(
-            origin: CGPoint(
-                        x: 165.0,
-                        y: 127.0
-                    ),
-                    size: CGSize(
-                        width: 150.0,
-                        height: 50.0
-                    )
-        )
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -64,17 +35,7 @@ class ProfileHeaderView: UIView {
         label.textColor = .gray
         label.text = "Waiting for something..."
         label.numberOfLines = 0
-        //label.translatesAutoresizingMaskIntoConstraints = false
-        label.frame = CGRect(
-            origin: CGPoint(
-                        x: 165.0,
-                        y: 177.0
-                    ),
-                    size: CGSize(
-                        width: 250.0,
-                        height: 50.0
-                    )
-        )
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -82,17 +43,8 @@ class ProfileHeaderView: UIView {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.backgroundColor = .blue
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(nil, action: #selector(showStatusButtonPressed), for: .touchUpInside)
-        button.frame = CGRect(
-            origin: CGPoint(
-                        x: 16.0,
-                        y: 282.0
-                    ),
-                    size: CGSize(
-                        width: 350.0,
-                        height: 50.0
-                    )
-        )
         button.layer.cornerRadius = 8
         button.dropShadow()
         return button
@@ -104,31 +56,50 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
-        addSubview(profileBackgroundView)
-        addSubview(profileImage)
-        addSubview(fullNameLabel)
-        addSubview(someLabel)
-        addSubview(statusButton)
+        self.backgroundColor = .white
+        setupSubviews()
+        setupContraints()
     }
-
+    
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
+    
+    func setupSubviews() {
+        self.addSubview(profileImage)
+        self.addSubview(fullNameLabel)
+        self.addSubview(someLabel)
+        self.addSubview(statusButton)
+    }
+    
+    func setupContraints() {
         
         
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+        NSLayoutConstraint.activate([
+            profileImage.heightAnchor.constraint(equalToConstant: 130.0),
+            profileImage.widthAnchor.constraint(equalToConstant: 130.0),
+            profileImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
+            profileImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16.0),
+            
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            fullNameLabel.widthAnchor.constraint(equalToConstant: 100.0),
+            fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20.0),
+            fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27.0),
 
+            someLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            someLabel.widthAnchor.constraint(equalToConstant: 200.0),
+            someLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34.0),
+            someLabel.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -30.0),
+                
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16.0),
+            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
+            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
+            ])
+        }
 }
 
 extension UIView {
-
     func dropShadow(scale: Bool = true) {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
@@ -140,5 +111,19 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
       }
+}
 
+class ProfileAvatarRounded: UIImageView {
+    var cornerRadius: CGFloat = 10.0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(
+            width: cornerRadius * 2,
+            height: cornerRadius * 2 
+        )
+    }
 }

@@ -14,20 +14,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.backgroundColor = .white
+        self.view.backgroundColor = .white
         self.title = "Profile"
-        view.addSubview(profileHeaderView)
-        profileHeaderView.frame = view.frame
-        // Do any additional setup after loading the view.
-    }
-    
-    /*
-    // MARK: - Navigation
+      
+        setupLayout()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        }
+        func setupLayout() {
+            view.addSubview(profileHeaderView)
+            profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
+            ])
 
+        }
 }

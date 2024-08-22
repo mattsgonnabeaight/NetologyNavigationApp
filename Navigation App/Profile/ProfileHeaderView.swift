@@ -42,11 +42,13 @@ class ProfileHeaderView: UIView {
     let statusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(named: "logoColor")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(nil, action: #selector(showStatusButtonPressed), for: .touchUpInside)
         button.layer.cornerRadius = 8
-        button.dropShadow()
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowOpacity = 0.7
         return button
     }()
     

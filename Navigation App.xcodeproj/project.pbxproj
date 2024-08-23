@@ -18,6 +18,10 @@
 		901EB52C2C69D91100AC0157 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */; };
 		901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */; };
 		901EB5302C72258200AC0157 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB52F2C72258200AC0157 /* LogInViewController.swift */; };
+		901EB5522C75A76100AC0157 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5512C75A76100AC0157 /* Post.swift */; };
+		901EB5602C77199E00AC0157 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */; };
+		901EB5622C77213C00AC0157 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5612C77213C00AC0157 /* UITableView.swift */; };
+		901EB5642C7741DD00AC0157 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5632C7741DD00AC0157 /* PostDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		901EB52F2C72258200AC0157 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		901EB5512C75A76100AC0157 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		901EB5612C77213C00AC0157 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		901EB5632C7741DD00AC0157 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,10 @@
 				901EB5222C69D52900AC0157 /* InfoViewController.swift */,
 				901EB5242C69D55100AC0157 /* PostViewController.swift */,
 				901EB5262C69D57100AC0157 /* FeedViewController.swift */,
+				901EB5512C75A76100AC0157 /* Post.swift */,
+				901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */,
+				901EB5612C77213C00AC0157 /* UITableView.swift */,
+				901EB5632C7741DD00AC0157 /* PostDetailsViewController.swift */,
 			);
 			path = "Navigation App";
 			sourceTree = "<group>";
@@ -160,15 +172,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				901EB5602C77199E00AC0157 /* PostTableViewCell.swift in Sources */,
 				901EB5132C69D4E300AC0157 /* ViewController.swift in Sources */,
 				901EB50F2C69D4E300AC0157 /* AppDelegate.swift in Sources */,
+				901EB5642C7741DD00AC0157 /* PostDetailsViewController.swift in Sources */,
 				901EB5302C72258200AC0157 /* LogInViewController.swift in Sources */,
 				901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */,
+				901EB5622C77213C00AC0157 /* UITableView.swift in Sources */,
 				901EB5112C69D4E300AC0157 /* SceneDelegate.swift in Sources */,
 				901EB5272C69D57100AC0157 /* FeedViewController.swift in Sources */,
 				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
 				901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */,
 				901EB52C2C69D91100AC0157 /* ProfileHeaderView.swift in Sources */,
+				901EB5522C75A76100AC0157 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,13 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+    
+    private lazy var view1: UIView = {
+            let view = UIView()
+            view.backgroundColor = .systemBackground
+            return view
+        }()
+            
         
     let contentView: UIView = {
         let contentView = UIView()
@@ -34,12 +41,29 @@ class LogInViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var credentialsBlock: UIStackView = { [unowned self] in
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        stackView.layer.borderWidth = 0.5
+        stackView.layer.cornerRadius = 10
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 0.5
+        stackView.addArrangedSubview(self.usernameTextField)
+        stackView.addArrangedSubview(self.passwordTextField)
+        return stackView
+    }()
+    
     private lazy var usernameTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.layer.cornerRadius = 10
         textField.placeholder = "Email or phone"
         textField.autocapitalizationType = .none
         textField.textColor = .black
@@ -50,15 +74,16 @@ class LogInViewController: UIViewController {
     private lazy var passwordTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.layer.cornerRadius = 10
         textField.placeholder = "Password"
         textField.isSecureTextEntry = true
         textField.delegate = self
         return textField
     }()
     
-    let loginButton : UIButton = {
+    private lazy var loginButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(named: "logoColor")
@@ -117,8 +142,7 @@ class LogInViewController: UIViewController {
     
     private func setupContentOfScrollView() {
         contentView.addSubview(logoView)
-        contentView.addSubview(usernameTextField)
-        contentView.addSubview(passwordTextField)
+        contentView.addSubview(credentialsBlock)
         contentView.addSubview(loginButton)
         
         NSLayoutConstraint.activate([
@@ -127,20 +151,13 @@ class LogInViewController: UIViewController {
             logoView.heightAnchor.constraint(equalToConstant: 100.0),
             logoView.widthAnchor.constraint(equalToConstant: 100.0),
             
-            usernameTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            usernameTextField.centerYAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 120.0),
-            usernameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
-            usernameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
-            usernameTextField.heightAnchor.constraint(equalToConstant: 50.0),
-            
-            passwordTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor),
-            passwordTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
-            passwordTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 50.0),
+            credentialsBlock.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16.0),
+            credentialsBlock.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -16.0),
+            credentialsBlock.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 120.0),
+            credentialsBlock.heightAnchor.constraint(equalToConstant: 105),
             
             loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16.0),
+            loginButton.topAnchor.constraint(equalTo: credentialsBlock.bottomAnchor, constant: 16.0),
             loginButton.heightAnchor.constraint(equalToConstant: 50.0),
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
@@ -149,7 +166,7 @@ class LogInViewController: UIViewController {
     @objc 
     func willShowKeyboard(_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        //scrollView.contentInset.bottom += keyboardHeight ?? 0.0
+        scrollView.contentInset.bottom += keyboardHeight ?? 0.0
     }
         
     @objc func willHideKeyboard(_ notification: NSNotification) {

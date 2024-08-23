@@ -28,8 +28,8 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var postText: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .systemGray
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
@@ -38,7 +38,7 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var likes: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var views: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -128,7 +128,7 @@ class PostTableViewCell: UITableViewCell {
             postText.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
             postText.topAnchor.constraint(equalTo: postImage.bottomAnchor),
             postText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0),
-            postText.heightAnchor.constraint(equalToConstant: 100.0),
+            postText.heightAnchor.constraint(equalToConstant: 50.0),
             
             likes.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             likes.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0),
@@ -138,7 +138,7 @@ class PostTableViewCell: UITableViewCell {
             views.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
             views.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0),
             views.heightAnchor.constraint(equalToConstant: 30.0),
-            views.widthAnchor.constraint(equalToConstant: 70.0),
+            views.widthAnchor.constraint(equalToConstant: 90.0),
         ])
     }
     

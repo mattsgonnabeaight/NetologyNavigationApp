@@ -59,12 +59,20 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
+        tuneView()
         setupSubviews()
         setupContraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(
+            width: UIView.noIntrinsicMetric,
+            height: 250.0
+        )
     }
     
     func setupSubviews() {
@@ -74,9 +82,12 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusButton)
     }
     
+    private func tuneView() {
+        backgroundColor = .secondarySystemBackground
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     func setupContraints() {
-        
-        
         NSLayoutConstraint.activate([
             profileImage.heightAnchor.constraint(equalToConstant: 130.0),
             profileImage.widthAnchor.constraint(equalToConstant: 130.0),

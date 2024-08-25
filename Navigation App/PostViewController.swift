@@ -7,10 +7,6 @@
 
 import UIKit
 
-struct Post {
-    let title: String
-}
-
 class PostViewController: UIViewController {
     
     var post: Post
@@ -29,7 +25,7 @@ class PostViewController: UIViewController {
 
         
         self.view.backgroundColor = .white
-        title = post.title
+        //title = post.title
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showInfo))
         

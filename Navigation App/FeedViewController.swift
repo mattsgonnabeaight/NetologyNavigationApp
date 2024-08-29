@@ -30,9 +30,9 @@ class FeedViewController: UIViewController {
     }
     
     @objc func showPost() {
-//        let post = Post(title: "New Post")
-//        let postVC = PostViewController(post: post)
-//        navigationController?.pushViewController(postVC, animated: true)
+        let post = Post(author: "Stepan", description: "Some Desc", image: "post1", likes: 3, views: 10)
+        let postVC = PostViewController(post: post)
+        navigationController?.pushViewController(postVC, animated: true)
     }
     
 

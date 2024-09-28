@@ -154,7 +154,7 @@ class PhotosViewController: UIViewController {
             didSelectItemAt indexPath: IndexPath
         ) {
             print("Did select cell at \(indexPath.row)")
-            let photo = photos[indexPath.row]
+            _ = photos[indexPath.row]
             let viewController = UIViewController()
             navigationController?.pushViewController(viewController, animated: true)
         }

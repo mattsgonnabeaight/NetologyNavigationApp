@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
     let profileHeaderView = ProfileHeaderView()
@@ -28,6 +29,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.backgroundColor = .white
         self.view.backgroundColor = .systemBackground
+        
         self.title = "Profile"
         setupView()
         addSubviews()

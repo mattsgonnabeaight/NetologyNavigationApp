@@ -8,16 +8,24 @@
 import UIKit
 
 class ProfileHeaderView : UIView {
-    let profileImage: UIImageView = {
+    private lazy var profileImage: UIImageView = {
         let image = UIImage(named: "profileImage")
-        let imageView = ProfileAvatarRounded(image: image!)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.borderWidth = 3
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.masksToBounds = true
-        imageView.cornerRadius = 65.0
-        return imageView
+        let profileImage = ProfileAvatarRounded(image: image!)
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didPressProfileImage)
+        )
+        tap.numberOfTapsRequired = 1
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tap)
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.layer.borderWidth = 3
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.masksToBounds = true
+        profileImage.cornerRadius = 65.0
+        return profileImage
     }()
+    
     
     let fullNameLabel : UILabel = {
         let label = UILabel()
@@ -52,7 +60,10 @@ class ProfileHeaderView : UIView {
         return button
     }()
     
-    @objc func showStatusButtonPressed() {
+    
+    
+    @objc 
+    func showStatusButtonPressed() {
         print("button pressed")
     }
     
@@ -62,6 +73,7 @@ class ProfileHeaderView : UIView {
         tuneView()
         setupSubviews()
         setupContraints()
+        //setupActions()
     }
     
     required init?(coder: NSCoder) {
@@ -80,6 +92,32 @@ class ProfileHeaderView : UIView {
         self.addSubview(fullNameLabel)
         self.addSubview(someLabel)
         self.addSubview(statusButton)
+    }
+    
+    @objc 
+    private func didPressRoot(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            print("Did long press Root")
+        }
+    }
+    
+//    private func setupActions() {
+//        let pressRoot = UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(didPressRoot(gesture:))
+//        )
+//        let pressProfileImage = UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(didPressRoot(gesture:))
+//        )
+//        //pressRoot.minimumPressDuration = 1.0
+//        self.addGestureRecognizer(pressRoot)
+//        profileImage.addGestureRecognizer(pressProfileImage)
+//    }
+    //не работает функция
+    @objc
+    private func didPressProfileImage() {
+            print("Did tap Profile Image")
     }
     
     private func tuneView() {

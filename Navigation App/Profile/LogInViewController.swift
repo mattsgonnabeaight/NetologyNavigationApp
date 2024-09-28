@@ -13,7 +13,7 @@ class LogInViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .systemBackground
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -28,7 +28,7 @@ class LogInViewController: UIViewController {
     let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemBackground
         return contentView
     }()
     
@@ -51,7 +51,7 @@ class LogInViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 0.5
+        stackView.spacing = 0
         stackView.addArrangedSubview(self.usernameTextField)
         stackView.addArrangedSubview(self.passwordTextField)
         return stackView
@@ -61,25 +61,28 @@ class LogInViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.placeholder = "Email or phone"
+        //textField.leftView = paddingView
         textField.autocapitalizationType = .none
         textField.textColor = .black
         textField.delegate = self
+        addPadding(textField)
         return textField
     }()
     
     private lazy var passwordTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.placeholder = "Password"
         textField.isSecureTextEntry = true
         textField.delegate = self
+        addPadding(textField)
         return textField
     }()
     
@@ -98,12 +101,10 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         setupViews()
         setupConstraints()
         setupContentOfScrollView()
-
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -165,8 +166,8 @@ class LogInViewController: UIViewController {
     }
     @objc 
     func willShowKeyboard(_ notification: NSNotification) {
-        let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        scrollView.contentInset.bottom += keyboardHeight ?? 0.0
+        lazy var keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+        //scrollView.contentInset.bottom += keyboardHeight ?? 0.0
     }
         
     @objc func willHideKeyboard(_ notification: NSNotification) {
@@ -200,6 +201,12 @@ class LogInViewController: UIViewController {
     private func loginButtonPressed() {
         let pvc = ProfileViewController()
         self.navigationController?.pushViewController(pvc, animated: true)
+    }
+    
+    private func addPadding(_ textField: UITextField) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
     }
 }
 

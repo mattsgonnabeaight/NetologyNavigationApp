@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView : UIView {
     let profileImage: UIImageView = {
         let image = UIImage(named: "profileImage")
         let imageView = ProfileAvatarRounded(image: image!)
@@ -19,17 +19,17 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    let fullNameLabel: UILabel = {
+    let fullNameLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = .label
         label.text = "Hipster Cat"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let someLabel: UILabel = {
+    let someLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
@@ -39,7 +39,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    let statusButton: UIButton = {
+    let statusButton : UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.backgroundColor = UIColor(named: "logoColor")
@@ -58,7 +58,7 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         tuneView()
         setupSubviews()
         setupContraints()

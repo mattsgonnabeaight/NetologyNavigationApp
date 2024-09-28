@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profileNavigationController.viewControllers = [LogInViewController()]
         
         tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
-        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.backgroundColor = .systemBackground
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

@@ -7,6 +7,9 @@
 
 import UIKit
 import StorageService
+//No such module 'iOSIntPackage'
+import iOSIntPackage
+
 
 class PostTableViewCell: UITableViewCell {
     private lazy var fullNameLabel: UILabel = {
@@ -20,6 +23,8 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var postImage : UIImageView = {
         let image = UIImage(named: "profileImage")
+        //как это определять и запускать? xcode ругается на отсутствие снепкита, 
+        image.processImage(sourceImage: image, filter: .noir, completion: self)
         let imageView = UIImageView(image: image!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit

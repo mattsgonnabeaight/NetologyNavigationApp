@@ -73,7 +73,6 @@ class ProfileHeaderView : UIView {
         tuneView()
         setupSubviews()
         setupContraints()
-        //setupActions()
     }
     
     required init?(coder: NSCoder) {
@@ -94,30 +93,10 @@ class ProfileHeaderView : UIView {
         self.addSubview(statusButton)
     }
     
-    @objc 
-    private func didPressRoot(gesture: UIGestureRecognizer) {
-        if gesture.state == .ended {
-            print("Did long press Root")
-        }
-    }
-    
-//    private func setupActions() {
-//        let pressRoot = UITapGestureRecognizer(
-//            target: self,
-//            action: #selector(didPressRoot(gesture:))
-//        )
-//        let pressProfileImage = UITapGestureRecognizer(
-//            target: self,
-//            action: #selector(didPressRoot(gesture:))
-//        )
-//        //pressRoot.minimumPressDuration = 1.0
-//        self.addGestureRecognizer(pressRoot)
-//        profileImage.addGestureRecognizer(pressProfileImage)
-//    }
-    //не работает функция
     @objc
     private func didPressProfileImage() {
-            print("Did tap Profile Image")
+        print("Did tap Profile Image")
+        launchAnimation()
     }
     
     private func tuneView() {
@@ -148,6 +127,34 @@ class ProfileHeaderView : UIView {
             statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
             ])
         }
+    /*не понятно:
+     1. как сделать поверх всех вью
+     2. как увеличить размер анимации
+     3. как добавить кнопку, для закрытия
+    **/
+    private func launchAnimation() {
+        let centerOrigin = profileImage.center
+        
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock {
+            print("Did finish CAAnimation example")
+        }
+        
+        let animationPosition = CABasicAnimation(keyPath: #keyPath(CALayer.position))
+        animationPosition.toValue = CGPoint(
+            x: 2.0 * centerOrigin.x,
+            y: 2.0 * centerOrigin.y
+        )
+        animationPosition.duration = 0.5
+        animationPosition.autoreverses = false
+        animationPosition.isRemovedOnCompletion = false
+        animationPosition.repeatCount = 1
+        animationPosition.delegate = self
+        profileImage.layer.add(animationPosition, forKey: #keyPath(CALayer.position))
+        
+        CATransaction.commit()
+    }
 }
 
 extension UIView {
@@ -176,5 +183,21 @@ class ProfileAvatarRounded: UIImageView {
             width: cornerRadius * 2,
             height: cornerRadius * 2 
         )
+    }
+}
+
+extension ProfileHeaderView: CAAnimationDelegate {
+
+    func animationDidStart(
+        _ anim: CAAnimation
+    ) {
+        print("Did start CAAnimation example")
+    }
+    
+    func animationDidStop(
+        _ animation: CAAnimation,
+        finished flag: Bool
+    ) {
+        print("Did finish CAAnimation example")
     }
 }

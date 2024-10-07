@@ -36,6 +36,7 @@
 		907C98B62CA72BC400BD470F /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; };
 		907C98B72CA72BC400BD470F /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		907C98BF2CA72BD500BD470F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5512C75A76100AC0157 /* Post.swift */; };
+		908772EB2CB48ADC002784C7 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 908772EA2CB48ADC002784C7 /* iOSIntPackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				908772EB2CB48ADC002784C7 /* iOSIntPackage in Frameworks */,
 				907C98B62CA72BC400BD470F /* StorageService.framework in Frameworks */,
 				225EC34F16BBB9F05D771D28 /* Pods_Navigation_App.framework in Frameworks */,
 			);
@@ -290,6 +292,9 @@
 				907C98B52CA72BC400BD470F /* PBXTargetDependency */,
 			);
 			name = "Navigation App";
+			packageProductDependencies = (
+				908772EA2CB48ADC002784C7 /* iOSIntPackage */,
+			);
 			productName = "Navigation App";
 			productReference = 901EB50B2C69D4E300AC0157 /* Navigation App.app */;
 			productType = "com.apple.product-type.application";
@@ -920,6 +925,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		908772EA2CB48ADC002784C7 /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 907C98DA2CA8A89D00BD470F /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 901EB5032C69D4E300AC0157 /* Project object */;
 }

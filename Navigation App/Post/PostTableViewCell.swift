@@ -23,8 +23,6 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var postImage : UIImageView = {
         let image = UIImage(named: "profileImage")
-        //как это определять и запускать? xcode ругается на отсутствие снепкита, 
-        image.processImage(sourceImage: image, filter: .noir, completion: self)
         let imageView = UIImageView(image: image!)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -150,7 +148,11 @@ class PostTableViewCell: UITableViewCell {
     
     func update(_ model: Post) {
         fullNameLabel.text = model.author
-        postImage.image = UIImage(named: model.image)
+//        postImage.image = UIImage(named: model.image)
+        let filter = ImageProcessor()
+        let someImage = UIImage(named: model.image)
+        let filteredImage  = filter.processImage(sourceImage: someImage!, filter: .noir, completion: {_ in postImage.image?.cgImage })
+
         postText.text = model.description
         likes.text! += String(model.likes)
         views.text! += String(model.views)

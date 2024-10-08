@@ -148,11 +148,11 @@ class PostTableViewCell: UITableViewCell {
     
     func update(_ model: Post) {
         fullNameLabel.text = model.author
-//        postImage.image = UIImage(named: model.image)
         let filter = ImageProcessor()
         let someImage = UIImage(named: model.image)
-        let filteredImage  = filter.processImage(sourceImage: someImage!, filter: .noir, completion: {_ in postImage.image?.cgImage })
-
+        filter.processImage(sourceImage: someImage!, filter: .noir, completion: { filteredImage in
+            postImage.image = filteredImage
+        })
         postText.text = model.description
         likes.text! += String(model.likes)
         views.text! += String(model.views)

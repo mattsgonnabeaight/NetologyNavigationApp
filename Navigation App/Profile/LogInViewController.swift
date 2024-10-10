@@ -199,8 +199,16 @@ class LogInViewController: UIViewController {
     
     @objc
     private func loginButtonPressed() {
+        
         let pvc = ProfileViewController()
-        self.navigationController?.pushViewController(pvc, animated: true)
+        let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+        print(pvc.user)
+        if usernameTextField.text == pvc.user.login {
+            self.navigationController?.pushViewController(pvc, animated: true)
+        } else {
+            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func addPadding(_ textField: UITextField) {

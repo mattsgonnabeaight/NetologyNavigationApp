@@ -7,6 +7,9 @@
 
 import UIKit
 import StorageService
+//No such module 'iOSIntPackage'
+import iOSIntPackage
+
 
 class PostTableViewCell: UITableViewCell {
     private lazy var fullNameLabel: UILabel = {
@@ -58,7 +61,8 @@ class PostTableViewCell: UITableViewCell {
         label.text = "Views: "
         return label
     }()
-
+    
+    let filter = ImageProcessor()
 
     override init(
         style: UITableViewCell.CellStyle,
@@ -145,7 +149,9 @@ class PostTableViewCell: UITableViewCell {
     
     func update(_ model: Post) {
         fullNameLabel.text = model.author
-        postImage.image = UIImage(named: model.image)
+        filter.processImage(sourceImage: UIImage(named: model.image)!, filter: .noir, completion: { filteredImage in
+            postImage.image = filteredImage
+        })
         postText.text = model.description
         likes.text! += String(model.likes)
         views.text! += String(model.views)

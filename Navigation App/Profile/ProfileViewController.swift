@@ -27,10 +27,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.view.backgroundColor = .systemBackground
-        
-        self.title = "Profile"
+//        self.navigationController?.navigationBar.backgroundColor = .white
+//        self.view.backgroundColor = .systemBackground
+//        
+//        self.title = "Profile"
         setupView()
         addSubviews()
         setupConstraints()
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = false
+        //navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func addSubviews() {

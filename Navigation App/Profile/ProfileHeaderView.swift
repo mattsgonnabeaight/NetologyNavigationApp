@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView : UIView {
     private lazy var profileImage: UIImageView = {
@@ -50,7 +51,11 @@ class ProfileHeaderView : UIView {
     let statusButton : UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
+#if DEBUG
+        button.backgroundColor = UIColor.black
+#else
         button.backgroundColor = UIColor(named: "logoColor")
+#endif
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(nil, action: #selector(showStatusButtonPressed), for: .touchUpInside)
         button.layer.cornerRadius = 8
@@ -72,7 +77,7 @@ class ProfileHeaderView : UIView {
         self.backgroundColor = .systemBackground
         tuneView()
         setupSubviews()
-        setupContraints()
+        setupCinstrainsViaSnapkit()
     }
     
     required init?(coder: NSCoder) {
@@ -104,34 +109,33 @@ class ProfileHeaderView : UIView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func setupContraints() {
-        NSLayoutConstraint.activate([
-            profileImage.heightAnchor.constraint(equalToConstant: 130.0),
-            profileImage.widthAnchor.constraint(equalToConstant: 130.0),
-            profileImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
-            profileImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16.0),
-            
-            fullNameLabel.heightAnchor.constraint(equalToConstant: 20.0),
-            fullNameLabel.widthAnchor.constraint(equalToConstant: 100.0),
-            fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20.0),
-            fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27.0),
-
-            someLabel.heightAnchor.constraint(equalToConstant: 20.0),
-            someLabel.widthAnchor.constraint(equalToConstant: 200.0),
-            someLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -34.0),
-            someLabel.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -30.0),
-                
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
-            statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16.0),
-            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
-            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
-            ])
+    
+    func setupCinstrainsViaSnapkit() {
+        profileImage.snp.makeConstraints { (make) -> Void in
+            make.width.height.equalTo(130.0)
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(16.0)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(16.0)
         }
-    /*не понятно:
-     1. как сделать поверх всех вью
-     2. как увеличить размер анимации
-     3. как добавить кнопку, для закрытия
-    **/
+        fullNameLabel.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(100.0)
+            make.height.equalTo(20.0)
+            make.centerX.equalTo(self.safeAreaLayoutGuide).offset(16.0)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(27.0)
+        }
+
+        someLabel.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(200.0)
+            make.height.equalTo(20.0)
+            make.leading.equalTo(snp_centerXWithinMargins).offset(-30.0)
+            make.bottom.equalTo(statusButton.snp_topMargin).offset(-34.0)
+        }
+        statusButton.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(50.0)
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(16.0)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-16.0)
+            make.top.equalTo(profileImage.snp_bottomMargin).offset(16.0)
+        }
+
     private func launchAnimation() {
         let centerOrigin = profileImage.center
         
@@ -154,6 +158,7 @@ class ProfileHeaderView : UIView {
         profileImage.layer.add(animationPosition, forKey: #keyPath(CALayer.position))
         
         CATransaction.commit()
+
     }
 }
 

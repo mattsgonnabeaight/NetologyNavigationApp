@@ -11,6 +11,14 @@ import StorageService
 class ProfileViewController: UIViewController {
     let profileHeaderView = ProfileHeaderView()
     fileprivate let data = Post.makePost()
+    
+#if DEBUG
+    var user = TestUserService().testUser
+#else
+    var user: User = User(login: "stepan", fullName: "Stepan the Cat", avatar: UIImage(named: "profileImage")!, status: "chilling")
+#endif
+    
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
@@ -27,10 +35,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.backgroundColor = .white
-//        self.view.backgroundColor = .systemBackground
-//        
-//        self.title = "Profile"
         setupView()
         addSubviews()
         setupConstraints()
@@ -39,7 +43,6 @@ class ProfileViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-        //navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func addSubviews() {
@@ -145,8 +148,6 @@ extension ProfileViewController: UITableViewDelegate {
     ) {
         if indexPath.section == 0 {
             let gallery = PhotosViewController()
-//            gallery.view.backgroundColor = .red
-//            gallery.navigationItem.title = "Photo Gallery"
             navigationController?.pushViewController(gallery, animated: true)
         } else {
             print("Did select cell at \(indexPath)")

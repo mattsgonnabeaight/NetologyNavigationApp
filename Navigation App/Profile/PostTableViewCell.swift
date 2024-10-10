@@ -7,7 +7,6 @@
 
 import UIKit
 import StorageService
-//No such module 'iOSIntPackage'
 import iOSIntPackage
 
 

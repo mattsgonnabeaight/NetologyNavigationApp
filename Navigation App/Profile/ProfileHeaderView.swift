@@ -122,7 +122,7 @@ class ProfileHeaderView : UIView {
             make.centerX.equalTo(self.safeAreaLayoutGuide).offset(16.0)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(27.0)
         }
-
+        
         someLabel.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(200.0)
             make.height.equalTo(20.0)
@@ -135,6 +135,7 @@ class ProfileHeaderView : UIView {
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-16.0)
             make.top.equalTo(profileImage.snp_bottomMargin).offset(16.0)
         }
+    }
 
     private func launchAnimation() {
         let centerOrigin = profileImage.center
@@ -192,13 +193,11 @@ class ProfileAvatarRounded: UIImageView {
 }
 
 extension ProfileHeaderView: CAAnimationDelegate {
-
     func animationDidStart(
         _ anim: CAAnimation
     ) {
         print("Did start CAAnimation example")
     }
-    
     func animationDidStop(
         _ animation: CAAnimation,
         finished flag: Bool

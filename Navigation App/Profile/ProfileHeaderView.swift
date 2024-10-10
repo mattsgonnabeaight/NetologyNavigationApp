@@ -8,16 +8,24 @@
 import UIKit
 
 class ProfileHeaderView : UIView {
-    let profileImage: UIImageView = {
+    private lazy var profileImage: UIImageView = {
         let image = UIImage(named: "profileImage")
-        let imageView = ProfileAvatarRounded(image: image!)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.borderWidth = 3
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.masksToBounds = true
-        imageView.cornerRadius = 65.0
-        return imageView
+        let profileImage = ProfileAvatarRounded(image: image!)
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didPressProfileImage)
+        )
+        tap.numberOfTapsRequired = 1
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tap)
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.layer.borderWidth = 3
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.masksToBounds = true
+        profileImage.cornerRadius = 65.0
+        return profileImage
     }()
+    
     
     let fullNameLabel : UILabel = {
         let label = UILabel()
@@ -52,7 +60,10 @@ class ProfileHeaderView : UIView {
         return button
     }()
     
-    @objc func showStatusButtonPressed() {
+    
+    
+    @objc 
+    func showStatusButtonPressed() {
         print("button pressed")
     }
     
@@ -80,6 +91,12 @@ class ProfileHeaderView : UIView {
         self.addSubview(fullNameLabel)
         self.addSubview(someLabel)
         self.addSubview(statusButton)
+    }
+    
+    @objc
+    private func didPressProfileImage() {
+        print("Did tap Profile Image")
+        launchAnimation()
     }
     
     private func tuneView() {
@@ -110,6 +127,34 @@ class ProfileHeaderView : UIView {
             statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
             ])
         }
+    /*не понятно:
+     1. как сделать поверх всех вью
+     2. как увеличить размер анимации
+     3. как добавить кнопку, для закрытия
+    **/
+    private func launchAnimation() {
+        let centerOrigin = profileImage.center
+        
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock {
+            print("Did finish CAAnimation example")
+        }
+        
+        let animationPosition = CABasicAnimation(keyPath: #keyPath(CALayer.position))
+        animationPosition.toValue = CGPoint(
+            x: 2.0 * centerOrigin.x,
+            y: 2.0 * centerOrigin.y
+        )
+        animationPosition.duration = 0.5
+        animationPosition.autoreverses = false
+        animationPosition.isRemovedOnCompletion = false
+        animationPosition.repeatCount = 1
+        animationPosition.delegate = self
+        profileImage.layer.add(animationPosition, forKey: #keyPath(CALayer.position))
+        
+        CATransaction.commit()
+    }
 }
 
 extension UIView {
@@ -138,5 +183,21 @@ class ProfileAvatarRounded: UIImageView {
             width: cornerRadius * 2,
             height: cornerRadius * 2 
         )
+    }
+}
+
+extension ProfileHeaderView: CAAnimationDelegate {
+
+    func animationDidStart(
+        _ anim: CAAnimation
+    ) {
+        print("Did start CAAnimation example")
+    }
+    
+    func animationDidStop(
+        _ animation: CAAnimation,
+        finished flag: Bool
+    ) {
+        print("Did finish CAAnimation example")
     }
 }

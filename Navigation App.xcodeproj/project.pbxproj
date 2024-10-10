@@ -196,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				901EB5932C80E25600AC0157 /* Photo */,
-				901EB5902C7BA88900AC0157 /* Post */,
 				901EB52A2C69D8E300AC0157 /* Profile */,
 				901EB50E2C69D4E300AC0157 /* AppDelegate.swift */,
 				901EB5102C69D4E300AC0157 /* SceneDelegate.swift */,
@@ -205,7 +204,6 @@
 				901EB5192C69D4E500AC0157 /* LaunchScreen.storyboard */,
 				901EB51C2C69D4E500AC0157 /* Info.plist */,
 				901EB5222C69D52900AC0157 /* InfoViewController.swift */,
-				901EB5242C69D55100AC0157 /* PostViewController.swift */,
 				901EB5262C69D57100AC0157 /* FeedViewController.swift */,
 				901EB5612C77213C00AC0157 /* UITableView.swift */,
 			);
@@ -215,6 +213,14 @@
 		901EB52A2C69D8E300AC0157 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				901EB5B32C80E38500AC0157 /* Reusable.swift */,
+				901EB5242C69D55100AC0157 /* PostViewController.swift */,
+				901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */,
+				901EB5912C80BC4300AC0157 /* PhotosViewController.swift */,
+				901EB5632C7741DD00AC0157 /* PostDetailsViewController.swift */,
+				901EB58D2C7B56CF00AC0157 /* PhotosTableViewCell.swift */,
+				901EB5B12C80E2B700AC0157 /* Photo.swift */,
+				901EB5B52C80E45000AC0157 /* PhotoCell.swift */,
 				901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */,
 				901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */,
 				901EB52F2C72258200AC0157 /* LogInViewController.swift */,
@@ -222,23 +228,9 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		901EB5902C7BA88900AC0157 /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */,
-				901EB5632C7741DD00AC0157 /* PostDetailsViewController.swift */,
-			);
-			path = Post;
-			sourceTree = "<group>";
-		};
 		901EB5932C80E25600AC0157 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				901EB5B12C80E2B700AC0157 /* Photo.swift */,
-				901EB5912C80BC4300AC0157 /* PhotosViewController.swift */,
-				901EB5B32C80E38500AC0157 /* Reusable.swift */,
-				901EB5B52C80E45000AC0157 /* PhotoCell.swift */,
-				901EB58D2C7B56CF00AC0157 /* PhotosTableViewCell.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";

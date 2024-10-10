@@ -43,7 +43,11 @@ class ProfileHeaderView : UIView {
     let statusButton : UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
+#if DEBUG
+        button.backgroundColor = UIColor.black
+#else
         button.backgroundColor = UIColor(named: "logoColor")
+#endif
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(nil, action: #selector(showStatusButtonPressed), for: .touchUpInside)
         button.layer.cornerRadius = 8

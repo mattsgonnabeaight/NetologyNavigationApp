@@ -61,7 +61,8 @@ class PostTableViewCell: UITableViewCell {
         label.text = "Views: "
         return label
     }()
-
+    
+    let filter = ImageProcessor()
 
     override init(
         style: UITableViewCell.CellStyle,
@@ -148,9 +149,7 @@ class PostTableViewCell: UITableViewCell {
     
     func update(_ model: Post) {
         fullNameLabel.text = model.author
-        let filter = ImageProcessor()
-        let someImage = UIImage(named: model.image)
-        filter.processImage(sourceImage: someImage!, filter: .noir, completion: { filteredImage in
+        filter.processImage(sourceImage: UIImage(named: model.image)!, filter: .noir, completion: { filteredImage in
             postImage.image = filteredImage
         })
         postText.text = model.description

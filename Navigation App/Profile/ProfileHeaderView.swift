@@ -9,16 +9,24 @@ import UIKit
 import SnapKit
 
 class ProfileHeaderView : UIView {
-    let profileImage: UIImageView = {
+    private lazy var profileImage: UIImageView = {
         let image = UIImage(named: "profileImage")
-        let imageView = ProfileAvatarRounded(image: image!)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.borderWidth = 3
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.masksToBounds = true
-        imageView.cornerRadius = 65.0
-        return imageView
+        let profileImage = ProfileAvatarRounded(image: image!)
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didPressProfileImage)
+        )
+        tap.numberOfTapsRequired = 1
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tap)
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.layer.borderWidth = 3
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.masksToBounds = true
+        profileImage.cornerRadius = 65.0
+        return profileImage
     }()
+    
     
     let fullNameLabel : UILabel = {
         let label = UILabel()
@@ -57,7 +65,10 @@ class ProfileHeaderView : UIView {
         return button
     }()
     
-    @objc func showStatusButtonPressed() {
+    
+    
+    @objc 
+    func showStatusButtonPressed() {
         print("button pressed")
     }
     
@@ -87,6 +98,12 @@ class ProfileHeaderView : UIView {
         self.addSubview(statusButton)
     }
     
+    @objc
+    private func didPressProfileImage() {
+        print("Did tap Profile Image")
+        launchAnimation()
+    }
+    
     private func tuneView() {
         backgroundColor = .secondarySystemBackground
         translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +122,7 @@ class ProfileHeaderView : UIView {
             make.centerX.equalTo(self.safeAreaLayoutGuide).offset(16.0)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(27.0)
         }
+
         someLabel.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(200.0)
             make.height.equalTo(20.0)
@@ -117,6 +135,30 @@ class ProfileHeaderView : UIView {
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-16.0)
             make.top.equalTo(profileImage.snp_bottomMargin).offset(16.0)
         }
+
+    private func launchAnimation() {
+        let centerOrigin = profileImage.center
+        
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock {
+            print("Did finish CAAnimation example")
+        }
+        
+        let animationPosition = CABasicAnimation(keyPath: #keyPath(CALayer.position))
+        animationPosition.toValue = CGPoint(
+            x: 2.0 * centerOrigin.x,
+            y: 2.0 * centerOrigin.y
+        )
+        animationPosition.duration = 0.5
+        animationPosition.autoreverses = false
+        animationPosition.isRemovedOnCompletion = false
+        animationPosition.repeatCount = 1
+        animationPosition.delegate = self
+        profileImage.layer.add(animationPosition, forKey: #keyPath(CALayer.position))
+        
+        CATransaction.commit()
+
     }
 }
 
@@ -146,5 +188,21 @@ class ProfileAvatarRounded: UIImageView {
             width: cornerRadius * 2,
             height: cornerRadius * 2 
         )
+    }
+}
+
+extension ProfileHeaderView: CAAnimationDelegate {
+
+    func animationDidStart(
+        _ anim: CAAnimation
+    ) {
+        print("Did start CAAnimation example")
+    }
+    
+    func animationDidStop(
+        _ animation: CAAnimation,
+        finished flag: Bool
+    ) {
+        print("Did finish CAAnimation example")
     }
 }

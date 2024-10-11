@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
     
 #if DEBUG
     var user = TestUserService().testUser
+    
 #else
     var user: User = User(login: "stepan", fullName: "Stepan the Cat", avatar: UIImage(named: "profileImage")!, status: "chilling")
 #endif
@@ -66,6 +67,15 @@ class ProfileViewController: UIViewController {
         }
         
         let headerView = ProfileHeaderView()
+        #if DEBUG
+        headerView.fullNameLabel.text = user.fullName
+        headerView.someLabel.text = user.status
+        headerView.profileImage.image = user.avatar
+        #else
+        headerView.fullNameLabel.text = user.fullName
+        headerView.someLabel.text = user.status
+        headerView.profileImage.image = user.avatar
+        #endif
         tableView.setAndLayout(headerView: headerView)
         tableView.register(
             PhotosTableViewCell.self,

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class ProfileHeaderView : UIView {
-    private lazy var profileImage: UIImageView = {
+    lazy var profileImage: UIImageView = {
         let image = UIImage(named: "profileImage")
         let profileImage = ProfileAvatarRounded(image: image!)
         let tap = UITapGestureRecognizer(
@@ -32,7 +32,7 @@ class ProfileHeaderView : UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .label
-        label.text = "Hipster Cat"
+//        label.text = "Hipster Cat"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

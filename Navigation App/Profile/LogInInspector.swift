@@ -7,9 +7,12 @@
 
 import UIKit
 
-struct LoginInspector: LogInViewControllerDelegate  {
-    func check(login: String, password: String) {
-        Checker.shared.check(login: login, password: password)
-        print(login, password)
+struct LoginInspector: LogInViewControllerDelegate {
+    func check(login: String, password: String) -> Bool {
+        if Checker.shared.check(login: login, password: password) == true {
+            return true
+        } else {
+            return false
+        }
     }
 }

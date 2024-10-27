@@ -1,10 +1,3 @@
-//
-//  LogInViewController.swift
-//  Navigation App
-//
-//  Created by Matvey Krasnov on 18.8.24..
-//
-
 import UIKit
 
 class LogInViewController: UIViewController {
@@ -63,11 +56,9 @@ class LogInViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
-        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.placeholder = "Email or phone"
-        //textField.leftView = paddingView
         textField.autocapitalizationType = .none
         textField.textColor = .black
         textField.delegate = self
@@ -78,7 +69,6 @@ class LogInViewController: UIViewController {
     private lazy var passwordTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.placeholder = "Password"
@@ -169,7 +159,6 @@ class LogInViewController: UIViewController {
     @objc 
     func willShowKeyboard(_ notification: NSNotification) {
         lazy var keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        //scrollView.contentInset.bottom += keyboardHeight ?? 0.0
     }
         
     @objc func willHideKeyboard(_ notification: NSNotification) {
@@ -201,17 +190,29 @@ class LogInViewController: UIViewController {
     
     @objc
     private func loginButtonPressed() {
-        self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!)
         let pvc = ProfileViewController()
         let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
         print(pvc.user)
-//        if usernameTextField.text == pvc.user.login {
+        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
+            self.navigationController?.pushViewController(pvc, animated: true)
+        } else {
+            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+//    @objc
+//    private func l123oginButtonPressed() {
+//        let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+//        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
+//            
 //            self.navigationController?.pushViewController(pvc, animated: true)
 //        } else {
-//            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-//            self.present(alert, animated: true, completion: nil)
+//            alert.
 //        }
-    }
+//        
+//        
+//    }
     
     private func addPadding(_ textField: UITextField) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
@@ -230,5 +231,5 @@ extension LogInViewController: UITextFieldDelegate {
 }
 
 protocol LogInViewControllerDelegate {
-    func check(login: String, password: String)
+    func check(login: String, password: String) -> Bool
 }

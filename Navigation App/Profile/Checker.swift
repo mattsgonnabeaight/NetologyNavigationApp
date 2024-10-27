@@ -9,12 +9,13 @@ import Foundation
 
 class Checker {
     private let login: String = "stepan"
-    private let password: String = "qwerty123"
+    private let password: String = "123"
     
     static let shared = Checker()
     private init(){}
     
     func check(login: String, password: String) -> Bool {
+        print(login, password)
         if login == self.login && password == self.password {
             return true
         } else {

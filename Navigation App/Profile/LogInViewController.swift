@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, LogInViewControllerDelegate {
+class LogInViewController: UIViewController {
     
     var loginDelegate: LogInViewControllerDelegate?
     
@@ -201,16 +201,16 @@ class LogInViewController: UIViewController, LogInViewControllerDelegate {
     
     @objc
     private func loginButtonPressed() {
-        
+        self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!)
         let pvc = ProfileViewController()
         let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
         print(pvc.user)
-        if usernameTextField.text == pvc.user.login {
-            self.navigationController?.pushViewController(pvc, animated: true)
-        } else {
-            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+//        if usernameTextField.text == pvc.user.login {
+//            self.navigationController?.pushViewController(pvc, animated: true)
+//        } else {
+//            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
     }
     
     private func addPadding(_ textField: UITextField) {

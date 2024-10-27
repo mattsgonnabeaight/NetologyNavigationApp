@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class LogInViewController: UIViewController, LogInViewControllerDelegate {
     
     var loginDelegate: LogInViewControllerDelegate?
@@ -232,20 +230,5 @@ extension LogInViewController: UITextFieldDelegate {
 }
 
 protocol LogInViewControllerDelegate {
-    func check()
-}
-
-struct LoginInspector: LogInViewControllerDelegate {
-    func check() {
-        let pvc = ProfileViewController()
-        let lvc = LogInViewController()
-        let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
-        print(pvc.user)
-        if lvc.usernameTextField.text == pvc.user.login {
-            lvc.navigationController?.pushViewController(pvc, animated: true)
-        } else {
-            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-            lvc.present(alert, animated: true, completion: nil)
-        }
-    }
+    func check(login: String, password: String)
 }

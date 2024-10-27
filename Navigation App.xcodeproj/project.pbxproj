@@ -29,6 +29,7 @@
 		901EB5B42C80E38500AC0157 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5B32C80E38500AC0157 /* Reusable.swift */; };
 		901EB5B62C80E45000AC0157 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5B52C80E45000AC0157 /* PhotoCell.swift */; };
 		902A05712CC0568700882936 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A05702CC0568700882936 /* Checker.swift */; };
+		9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065E9822CCEA20700620C0C /* LogInInspector.swift */; };
 		907C98A52CA72BC400BD470F /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 907C98A42CA72BC400BD470F /* StorageService.docc */; };
 		907C98AB2CA72BC400BD470F /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; };
 		907C98B22CA72BC400BD470F /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C98B12CA72BC400BD470F /* StorageServiceTests.swift */; };
@@ -108,6 +109,7 @@
 		901EB5B32C80E38500AC0157 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		901EB5B52C80E45000AC0157 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		902A05702CC0568700882936 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		9065E9822CCEA20700620C0C /* LogInInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInInspector.swift; sourceTree = "<group>"; };
 		907C98A12CA72BC400BD470F /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		907C98A32CA72BC400BD470F /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		907C98A42CA72BC400BD470F /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				908772F62CB86870002784C7 /* TestUserService.swift */,
 				901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */,
 				901EB52F2C72258200AC0157 /* LogInViewController.swift */,
+				9065E9822CCEA20700620C0C /* LogInInspector.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -343,7 +346,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					901EB50A2C69D4E300AC0157 = {
 						CreatedOnToolsVersion = 15.3;
@@ -531,6 +534,7 @@
 				908772F52CB865CA002784C7 /* UserService.swift in Sources */,
 				901EB5272C69D57100AC0157 /* FeedViewController.swift in Sources */,
 				908772ED2CB863F7002784C7 /* User.swift in Sources */,
+				9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */,
 				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
 				901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */,
 				902A05712CC0568700882936 /* Checker.swift in Sources */,
@@ -623,8 +627,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -647,6 +651,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -687,7 +692,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -710,7 +715,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 627808272C3DC6098BB90CBE /* Pods-Navigation App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -739,7 +743,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 09307F8B4919EEF90781C4B4 /* Pods-Navigation App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -769,6 +772,7 @@
 			baseConfigurationReference = 7D1816BC8F41A22C0C8A2E2C /* Pods-StorageService.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -805,6 +809,7 @@
 			baseConfigurationReference = D9AB6611D185A94570BC92F9 /* Pods-StorageService.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -840,7 +845,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F41BE46AB8A5772AB03EE9A /* Pods-StorageService-StorageServiceTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9U489LNMDT;
@@ -859,7 +863,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85167A734A03A985AD0FDDF7 /* Pods-StorageService-StorageServiceTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9U489LNMDT;

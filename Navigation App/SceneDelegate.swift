@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         feedNavigationController.viewControllers = [FeedViewController()]
         
         profileNavigationController.viewControllers = [LogInViewController()]
-        LogInViewController.loginDelegate = LoginInspector()
+//        LogInViewController.loginDelegate = LoginInspector()
         tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
         tabBarController.tabBar.backgroundColor = .systemBackground
         

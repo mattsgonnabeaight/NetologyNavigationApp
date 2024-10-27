@@ -7,7 +7,11 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+
+
+class LogInViewController: UIViewController, LogInViewControllerDelegate {
+    
+    var loginDelegate: LogInViewControllerDelegate?
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -57,7 +61,7 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var usernameTextField : UITextField = {
+    fileprivate lazy var usernameTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
@@ -224,5 +228,24 @@ extension LogInViewController: UITextFieldDelegate {
     ) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+protocol LogInViewControllerDelegate {
+    func check()
+}
+
+struct LoginInspector: LogInViewControllerDelegate {
+    func check() {
+        let pvc = ProfileViewController()
+        let lvc = LogInViewController()
+        let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+        print(pvc.user)
+        if lvc.usernameTextField.text == pvc.user.login {
+            lvc.navigationController?.pushViewController(pvc, animated: true)
+        } else {
+            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+            lvc.present(alert, animated: true, completion: nil)
+        }
     }
 }

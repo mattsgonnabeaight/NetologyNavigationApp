@@ -14,38 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         let feedNavigationController = UINavigationController()
         let profileNavigationController = UINavigationController()
+        let logInViewController = LogInViewController()
         
         feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag:  0)
         profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag:  1)
         
         feedNavigationController.viewControllers = [FeedViewController()]
         
-        profileNavigationController.viewControllers = [LogInViewController()]
+        profileNavigationController.viewControllers = [logInViewController]
 
+        logInViewController.loginDelegate = MyLoginFactory().makeLoginInspector()
         tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
         tabBarController.tabBar.backgroundColor = .systemBackground
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
-    }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        
     }
 }

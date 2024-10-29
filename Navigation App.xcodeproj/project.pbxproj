@@ -12,7 +12,6 @@
 		789CBEBE431DD988DD8F43EA /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD0B5B1456745CD4B293D962 /* Pods_StorageService.framework */; };
 		901EB50F2C69D4E300AC0157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB50E2C69D4E300AC0157 /* AppDelegate.swift */; };
 		901EB5112C69D4E300AC0157 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5102C69D4E300AC0157 /* SceneDelegate.swift */; };
-		901EB5132C69D4E300AC0157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5122C69D4E300AC0157 /* ViewController.swift */; };
 		901EB5182C69D4E500AC0157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 901EB5172C69D4E500AC0157 /* Assets.xcassets */; };
 		901EB51B2C69D4E500AC0157 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 901EB51A2C69D4E500AC0157 /* Base */; };
 		901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5222C69D52900AC0157 /* InfoViewController.swift */; };
@@ -29,6 +28,9 @@
 		901EB5B22C80E2B700AC0157 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5B12C80E2B700AC0157 /* Photo.swift */; };
 		901EB5B42C80E38500AC0157 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5B32C80E38500AC0157 /* Reusable.swift */; };
 		901EB5B62C80E45000AC0157 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5B52C80E45000AC0157 /* PhotoCell.swift */; };
+		902A05712CC0568700882936 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A05702CC0568700882936 /* Checker.swift */; };
+		9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065E9822CCEA20700620C0C /* LogInInspector.swift */; };
+		9065E9A02CCF717C00620C0C /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9065E99F2CCF717C00620C0C /* MyLoginFactory.swift */; };
 		907C98A52CA72BC400BD470F /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 907C98A42CA72BC400BD470F /* StorageService.docc */; };
 		907C98AB2CA72BC400BD470F /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; };
 		907C98B22CA72BC400BD470F /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C98B12CA72BC400BD470F /* StorageServiceTests.swift */; };
@@ -37,6 +39,10 @@
 		907C98B72CA72BC400BD470F /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		907C98BF2CA72BD500BD470F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5512C75A76100AC0157 /* Post.swift */; };
 		908772EB2CB48ADC002784C7 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 908772EA2CB48ADC002784C7 /* iOSIntPackage */; };
+		908772ED2CB863F7002784C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772EC2CB863F7002784C7 /* User.swift */; };
+		908772F12CB86572002784C7 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F02CB86572002784C7 /* CurrentUserService.swift */; };
+		908772F52CB865CA002784C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F42CB865CA002784C7 /* UserService.swift */; };
+		908772F72CB86870002784C7 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F62CB86870002784C7 /* TestUserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +91,6 @@
 		901EB50B2C69D4E300AC0157 /* Navigation App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Navigation App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		901EB50E2C69D4E300AC0157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		901EB5102C69D4E300AC0157 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		901EB5122C69D4E300AC0157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		901EB5172C69D4E500AC0157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		901EB51A2C69D4E500AC0157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		901EB51C2C69D4E500AC0157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,11 +109,18 @@
 		901EB5B12C80E2B700AC0157 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		901EB5B32C80E38500AC0157 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		901EB5B52C80E45000AC0157 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		902A05702CC0568700882936 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		9065E9822CCEA20700620C0C /* LogInInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInInspector.swift; sourceTree = "<group>"; };
+		9065E99F2CCF717C00620C0C /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		907C98A12CA72BC400BD470F /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		907C98A32CA72BC400BD470F /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		907C98A42CA72BC400BD470F /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		907C98AA2CA72BC400BD470F /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		907C98B12CA72BC400BD470F /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		908772EC2CB863F7002784C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		908772F02CB86572002784C7 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		908772F42CB865CA002784C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		908772F62CB86870002784C7 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		9A01F18250F293D5A33DCE72 /* Pods_StorageService_StorageServiceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService_StorageServiceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41BE46AB8A5772AB03EE9A /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD0B5B1456745CD4B293D962 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,11 +207,9 @@
 		901EB50D2C69D4E300AC0157 /* Navigation App */ = {
 			isa = PBXGroup;
 			children = (
-				901EB5932C80E25600AC0157 /* Photo */,
 				901EB52A2C69D8E300AC0157 /* Profile */,
 				901EB50E2C69D4E300AC0157 /* AppDelegate.swift */,
 				901EB5102C69D4E300AC0157 /* SceneDelegate.swift */,
-				901EB5122C69D4E300AC0157 /* ViewController.swift */,
 				901EB5172C69D4E500AC0157 /* Assets.xcassets */,
 				901EB5192C69D4E500AC0157 /* LaunchScreen.storyboard */,
 				901EB51C2C69D4E500AC0157 /* Info.plist */,
@@ -217,22 +227,22 @@
 				901EB5242C69D55100AC0157 /* PostViewController.swift */,
 				901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */,
 				901EB5912C80BC4300AC0157 /* PhotosViewController.swift */,
+				902A05702CC0568700882936 /* Checker.swift */,
 				901EB5632C7741DD00AC0157 /* PostDetailsViewController.swift */,
 				901EB58D2C7B56CF00AC0157 /* PhotosTableViewCell.swift */,
+				9065E99F2CCF717C00620C0C /* MyLoginFactory.swift */,
 				901EB5B12C80E2B700AC0157 /* Photo.swift */,
 				901EB5B52C80E45000AC0157 /* PhotoCell.swift */,
 				901EB52B2C69D91100AC0157 /* ProfileHeaderView.swift */,
+				908772EC2CB863F7002784C7 /* User.swift */,
+				908772F02CB86572002784C7 /* CurrentUserService.swift */,
+				908772F42CB865CA002784C7 /* UserService.swift */,
+				908772F62CB86870002784C7 /* TestUserService.swift */,
 				901EB52D2C69D96C00AC0157 /* ProfileViewController.swift */,
 				901EB52F2C72258200AC0157 /* LogInViewController.swift */,
+				9065E9822CCEA20700620C0C /* LogInInspector.swift */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		901EB5932C80E25600AC0157 /* Photo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Photo;
 			sourceTree = "<group>";
 		};
 		907C98A22CA72BC400BD470F /* StorageService */ = {
@@ -339,7 +349,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					901EB50A2C69D4E300AC0157 = {
 						CreatedOnToolsVersion = 15.3;
@@ -513,19 +523,25 @@
 				901EB5B42C80E38500AC0157 /* Reusable.swift in Sources */,
 				901EB5B22C80E2B700AC0157 /* Photo.swift in Sources */,
 				901EB5602C77199E00AC0157 /* PostTableViewCell.swift in Sources */,
-				901EB5132C69D4E300AC0157 /* ViewController.swift in Sources */,
+				908772F12CB86572002784C7 /* CurrentUserService.swift in Sources */,
 				901EB50F2C69D4E300AC0157 /* AppDelegate.swift in Sources */,
 				901EB5642C7741DD00AC0157 /* PostDetailsViewController.swift in Sources */,
 				901EB5302C72258200AC0157 /* LogInViewController.swift in Sources */,
 				901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */,
+				908772F72CB86870002784C7 /* TestUserService.swift in Sources */,
 				901EB5622C77213C00AC0157 /* UITableView.swift in Sources */,
 				901EB5112C69D4E300AC0157 /* SceneDelegate.swift in Sources */,
 				901EB5B62C80E45000AC0157 /* PhotoCell.swift in Sources */,
 				901EB58E2C7B56CF00AC0157 /* PhotosTableViewCell.swift in Sources */,
 				901EB5922C80BC4300AC0157 /* PhotosViewController.swift in Sources */,
+				908772F52CB865CA002784C7 /* UserService.swift in Sources */,
 				901EB5272C69D57100AC0157 /* FeedViewController.swift in Sources */,
+				908772ED2CB863F7002784C7 /* User.swift in Sources */,
+				9065E9A02CCF717C00620C0C /* MyLoginFactory.swift in Sources */,
+				9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */,
 				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
 				901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */,
+				902A05712CC0568700882936 /* Checker.swift in Sources */,
 				901EB52C2C69D91100AC0157 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +655,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -694,7 +711,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};
@@ -702,7 +719,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 627808272C3DC6098BB90CBE /* Pods-Navigation App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -731,7 +747,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 09307F8B4919EEF90781C4B4 /* Pods-Navigation App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -761,6 +776,7 @@
 			baseConfigurationReference = 7D1816BC8F41A22C0C8A2E2C /* Pods-StorageService.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -797,6 +813,7 @@
 			baseConfigurationReference = D9AB6611D185A94570BC92F9 /* Pods-StorageService.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -832,7 +849,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F41BE46AB8A5772AB03EE9A /* Pods-StorageService-StorageServiceTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9U489LNMDT;
@@ -851,7 +867,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 85167A734A03A985AD0FDDF7 /* Pods-StorageService-StorageServiceTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9U489LNMDT;

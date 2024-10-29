@@ -1,13 +1,8 @@
-//
-//  LogInViewController.swift
-//  Navigation App
-//
-//  Created by Matvey Krasnov on 18.8.24..
-//
-
 import UIKit
 
 class LogInViewController: UIViewController {
+    
+    var loginDelegate: LogInViewControllerDelegate?
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -57,15 +52,13 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var usernameTextField : UITextField = {
+    fileprivate lazy var usernameTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
-        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.placeholder = "Email or phone"
-        //textField.leftView = paddingView
         textField.autocapitalizationType = .none
         textField.textColor = .black
         textField.delegate = self
@@ -76,7 +69,6 @@ class LogInViewController: UIViewController {
     private lazy var passwordTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        //textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.placeholder = "Password"
@@ -167,7 +159,6 @@ class LogInViewController: UIViewController {
     @objc 
     func willShowKeyboard(_ notification: NSNotification) {
         lazy var keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        //scrollView.contentInset.bottom += keyboardHeight ?? 0.0
     }
         
     @objc func willHideKeyboard(_ notification: NSNotification) {
@@ -200,7 +191,13 @@ class LogInViewController: UIViewController {
     @objc
     private func loginButtonPressed() {
         let pvc = ProfileViewController()
-        self.navigationController?.pushViewController(pvc, animated: true)
+        let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
+            self.navigationController?.pushViewController(pvc, animated: true)
+        } else {
+            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func addPadding(_ textField: UITextField) {
@@ -217,4 +214,8 @@ extension LogInViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+protocol LogInViewControllerDelegate {
+    func check(login: String, password: String) -> Bool
 }

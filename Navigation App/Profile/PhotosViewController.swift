@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController  {
     
     var photos: [Photo] = Photo.make()
     
@@ -159,3 +160,7 @@ class PhotosViewController: UIViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+}

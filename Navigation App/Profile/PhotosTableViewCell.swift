@@ -6,10 +6,9 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosTableViewCell: UITableViewCell {
-
-    
+class PhotosTableViewCell: UITableViewCell{
     
     private lazy var photosBlock: UIStackView = { [unowned self] in
         let stackView = UIStackView()

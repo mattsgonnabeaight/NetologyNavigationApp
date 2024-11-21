@@ -9,11 +9,10 @@ import UIKit
 import iOSIntPackage
 
 class PhotosViewController: UIViewController  {
-    
-    var photos: [Photo] = Photo.make()
-    var images: [UIImage] = []
     var imagePublisherFacade = ImagePublisherFacade()
-    
+    var photos: [Photo] = Photo.make()
+    var photosWithDelay: [UIImage] = []
+
     private lazy var collectionView: UICollectionView = {
             let viewLayout = UICollectionViewFlowLayout()
             
@@ -35,7 +34,19 @@ class PhotosViewController: UIViewController  {
         setupView()
         setupSubviews()
         setupLayouts()
-        addImages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        var images: [UIImage] = []
+        for photo in photos {
+            images.append(UIImage(named: photo.imageName)!)
+        }
+        imagePublisherFacade.subscribe(self)
+        receive(images: images)
+        imagePublisherFacade.removeSubscription(for: self)
+        imagePublisherFacade.rechargeImageLibrary()
+        
     }
         
     private func setupView() {
@@ -45,6 +56,7 @@ class PhotosViewController: UIViewController  {
 
     private func setupSubviews() {
         setupCollectionView()
+        
     }
         
     private func setupCollectionView() {
@@ -62,11 +74,6 @@ class PhotosViewController: UIViewController  {
             collectionView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor)
         ])
     }
-    
-    func addImages() {
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: self.images)
-        print(images.count)
-    }
         
     private enum LayoutConstant {
         static let spacing: CGFloat = 56.0
@@ -79,7 +86,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
         ) -> Int {
-            photos.count
+            photosWithDelay.count
         }
 
         func collectionView(
@@ -90,7 +97,7 @@ extension PhotosViewController: UICollectionViewDataSource {
                 withReuseIdentifier: PhotoCell.identifier,
                 for: indexPath) as! PhotoCell
             
-            let photo = photos[indexPath.row]
+            let photo = photosWithDelay[indexPath.row]
             cell.setup(with: photo)
             
             return cell
@@ -167,5 +174,8 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: images)
+//        print(images.count)
+
     }
 }

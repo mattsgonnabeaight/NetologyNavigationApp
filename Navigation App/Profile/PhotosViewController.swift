@@ -38,14 +38,11 @@ class PhotosViewController: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        var images: [UIImage] = []
-        for photo in photos {
-            images.append(photo)
-
-        }
+        var images: [UIImage] = Photo.make()
         imagePublisherFacade.subscribe(self)
         imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: images)
         receive(images: images)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -178,9 +175,6 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
-
-//        print(images.count)
         photos = images
-        
     }
 }

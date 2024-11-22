@@ -41,14 +41,16 @@ class PhotosViewController: UIViewController  {
         var images: [UIImage] = []
         for photo in photos {
             images.append(photo)
-//            images.append(UIImage(named: photo.imageName)!)
+
         }
         imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: images)
         receive(images: images)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         imagePublisherFacade.removeSubscription(for: self)
         imagePublisherFacade.rechargeImageLibrary()
-        photos = images
-        
     }
         
     private func setupView() {
@@ -176,8 +178,9 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: images)
-//        print(images.count)
 
+//        print(images.count)
+        photos = images
+        
     }
 }

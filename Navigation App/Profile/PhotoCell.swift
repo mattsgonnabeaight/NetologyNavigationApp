@@ -57,6 +57,6 @@ final class PhotoCell: UICollectionViewCell {
         with photo: UIImage
     ) {
 //        profileImageView.image = UIImage(named: photo.imageName)
-        profileImageView.image = photo
+//        profileImageView.image = photo
     }
 }

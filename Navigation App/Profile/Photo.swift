@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Photo {
     let imageName: String
@@ -58,5 +59,15 @@ extension Photo {
                 imageName: "meme14"
             )
         ]
+    }
+}
+
+extension Photo {
+    static func make() -> [UIImage] {
+        var photos: [UIImage] = []
+        for index in 0..<14 {
+            photos.append(UIImage(named: "meme\(index + 1)")!)
+        }
+        return photos
     }
 }

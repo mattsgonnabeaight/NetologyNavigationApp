@@ -10,7 +10,7 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController  {
     var imagePublisherFacade = ImagePublisherFacade()
-    var photos: [Photo] = Photo.make()
+    var photos: [UIImage] = Photo.make()
     var photosWithDelay: [UIImage] = []
 
     private lazy var collectionView: UICollectionView = {
@@ -40,12 +40,14 @@ class PhotosViewController: UIViewController  {
         
         var images: [UIImage] = []
         for photo in photos {
-            images.append(UIImage(named: photo.imageName)!)
+            images.append(photo)
+//            images.append(UIImage(named: photo.imageName)!)
         }
         imagePublisherFacade.subscribe(self)
         receive(images: images)
         imagePublisherFacade.removeSubscription(for: self)
         imagePublisherFacade.rechargeImageLibrary()
+        photos = images
         
     }
         
@@ -86,7 +88,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
         ) -> Int {
-            photosWithDelay.count
+            photos.count
         }
 
         func collectionView(
@@ -97,7 +99,7 @@ extension PhotosViewController: UICollectionViewDataSource {
                 withReuseIdentifier: PhotoCell.identifier,
                 for: indexPath) as! PhotoCell
             
-            let photo = photosWithDelay[indexPath.row]
+            let photo = photos[indexPath.row]
             cell.setup(with: photo)
             
             return cell

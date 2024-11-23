@@ -11,7 +11,6 @@ import iOSIntPackage
 class PhotosViewController: UIViewController  {
     var imagePublisherFacade = ImagePublisherFacade()
     var photos: [UIImage] = Photo.make()
-    var photosWithDelay: [UIImage] = []
 
     private lazy var collectionView: UICollectionView = {
             let viewLayout = UICollectionViewFlowLayout()
@@ -37,12 +36,8 @@ class PhotosViewController: UIViewController  {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        var images: [UIImage] = Photo.make()
         imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: images)
-        receive(images: images)
-        
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: photos)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -176,5 +171,6 @@ extension PhotosViewController: UICollectionViewDataSource {
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
         photos = images
+        collectionView.reloadData()
     }
 }

@@ -11,6 +11,7 @@ import iOSIntPackage
 class PhotosViewController: UIViewController  {
     var imagePublisherFacade = ImagePublisherFacade()
     var photos: [UIImage] = Photo.make()
+    var photoswithphotos: [UIImage] = []
 
     private lazy var collectionView: UICollectionView = {
             let viewLayout = UICollectionViewFlowLayout()
@@ -42,6 +43,7 @@ class PhotosViewController: UIViewController  {
     
     override func viewWillDisappear(_ animated: Bool) {
         imagePublisherFacade.removeSubscription(for: self)
+        photos = []
         imagePublisherFacade.rechargeImageLibrary()
     }
         
@@ -82,7 +84,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
         ) -> Int {
-            photos.count
+            photoswithphotos.count
         }
 
         func collectionView(
@@ -93,7 +95,7 @@ extension PhotosViewController: UICollectionViewDataSource {
                 withReuseIdentifier: PhotoCell.identifier,
                 for: indexPath) as! PhotoCell
             
-            let photo = photos[indexPath.row]
+            let photo = photoswithphotos[indexPath.row]
             cell.setup(with: photo)
             
             return cell
@@ -170,7 +172,7 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
-        photos = images
+        photoswithphotos = images
         collectionView.reloadData()
     }
 }

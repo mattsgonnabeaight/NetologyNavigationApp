@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
-    
-    var photos: [Photo] = Photo.make()
-    
+class PhotosViewController: UIViewController  {
+    var imagePublisherFacade = ImagePublisherFacade()
+    var photos: [UIImage] = Photo.make()
+    var photoswithphotos: [UIImage] = []
+
     private lazy var collectionView: UICollectionView = {
             let viewLayout = UICollectionViewFlowLayout()
             
@@ -27,54 +29,62 @@ class PhotosViewController: UIViewController {
             )
         return collectionView
        }()
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setupView()
-            setupSubviews()
-            setupLayouts()
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        setupSubviews()
+        setupLayouts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 11, userImages: photos)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        imagePublisherFacade.removeSubscription(for: self)
+        photos = []
+        imagePublisherFacade.rechargeImageLibrary()
+    }
         
-        private func setupView() {
-            view.backgroundColor = .systemBackground
-            title = "Photo Gallery"
-        }
-
-        private func setupSubviews() {
-            setupCollectionView()
-        }
-        
-        private func setupCollectionView() {
-            view.addSubview(collectionView)
-            
-            collectionView.dataSource = self
-            collectionView.delegate = self
-        }
-
-        private func setupLayouts() {
-            let safeAreaGuide = view.safeAreaLayoutGuide
-            
-            NSLayoutConstraint.activate([
-                collectionView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-                collectionView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor)
-            ])
-        }
-        
-        private enum LayoutConstant {
-            static let spacing: CGFloat = 56.0
-            static let itemHeight: CGFloat = 300.0
-        }
+    private func setupView() {
+        view.backgroundColor = .systemBackground
+        title = "Photo Gallery"
     }
 
-
-    extension PhotosViewController: UICollectionViewDataSource {
+    private func setupSubviews() {
+        setupCollectionView()
         
-        func collectionView(
-            _ collectionView: UICollectionView,
-            numberOfItemsInSection section: Int
+    }
+        
+    private func setupCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+
+    private func setupLayouts() {
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor)
+        ])
+    }
+        
+    private enum LayoutConstant {
+        static let spacing: CGFloat = 56.0
+        static let itemHeight: CGFloat = 300.0
+    }
+}
+
+extension PhotosViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
         ) -> Int {
-            photos.count
+            photoswithphotos.count
         }
 
         func collectionView(
@@ -85,12 +95,12 @@ class PhotosViewController: UIViewController {
                 withReuseIdentifier: PhotoCell.identifier,
                 for: indexPath) as! PhotoCell
             
-            let photo = photos[indexPath.row]
+            let photo = photoswithphotos[indexPath.row]
             cell.setup(with: photo)
             
             return cell
         }
-    }
+}
 
 
     extension PhotosViewController: UICollectionViewDelegateFlowLayout {
@@ -159,3 +169,10 @@ class PhotosViewController: UIViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        photoswithphotos = images
+        collectionView.reloadData()
+    }
+}

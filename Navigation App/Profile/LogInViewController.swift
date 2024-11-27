@@ -97,6 +97,7 @@ class LogInViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupContentOfScrollView()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -191,7 +192,10 @@ class LogInViewController: UIViewController {
     @objc
     private func loginButtonPressed() {
         let pvc = ProfileViewController()
+        print(usernameTextField.text)
         let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+        
+        print(self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!))
         if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
             self.navigationController?.pushViewController(pvc, animated: true)
         } else {

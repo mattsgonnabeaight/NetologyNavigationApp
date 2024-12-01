@@ -39,6 +39,8 @@
 		907C98B62CA72BC400BD470F /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; };
 		907C98B72CA72BC400BD470F /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 907C98A12CA72BC400BD470F /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		907C98BF2CA72BD500BD470F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901EB5512C75A76100AC0157 /* Post.swift */; };
+		9084E16A2CFC76570058DD61 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9084E1692CFC764C0058DD61 /* CustomButton.swift */; };
+		9084E16C2CFCECE60058DD61 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9084E16B2CFCECD80058DD61 /* FeedModel.swift */; };
 		908772ED2CB863F7002784C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772EC2CB863F7002784C7 /* User.swift */; };
 		908772F12CB86572002784C7 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F02CB86572002784C7 /* CurrentUserService.swift */; };
 		908772F52CB865CA002784C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F42CB865CA002784C7 /* UserService.swift */; };
@@ -117,6 +119,8 @@
 		907C98A42CA72BC400BD470F /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		907C98AA2CA72BC400BD470F /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		907C98B12CA72BC400BD470F /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		9084E1692CFC764C0058DD61 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		9084E16B2CFCECD80058DD61 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		908772EC2CB863F7002784C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		908772F02CB86572002784C7 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		908772F42CB865CA002784C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 		901EB52A2C69D8E300AC0157 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				9084E16B2CFCECD80058DD61 /* FeedModel.swift */,
+				9084E1692CFC764C0058DD61 /* CustomButton.swift */,
 				901EB5B32C80E38500AC0157 /* Reusable.swift */,
 				901EB5242C69D55100AC0157 /* PostViewController.swift */,
 				901EB55F2C77199E00AC0157 /* PostTableViewCell.swift */,
@@ -540,7 +546,9 @@
 				9065E9A02CCF717C00620C0C /* MyLoginFactory.swift in Sources */,
 				9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */,
 				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
+				9084E16A2CFC76570058DD61 /* CustomButton.swift in Sources */,
 				901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */,
+				9084E16C2CFCECE60058DD61 /* FeedModel.swift in Sources */,
 				902A05712CC0568700882936 /* Checker.swift in Sources */,
 				901EB52C2C69D91100AC0157 /* ProfileHeaderView.swift in Sources */,
 			);

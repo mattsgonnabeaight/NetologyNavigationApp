@@ -12,13 +12,6 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
-    private lazy var view1: UIView = {
-            let view = UIView()
-            view.backgroundColor = .systemBackground
-            return view
-        }()
-            
         
     let contentView: UIView = {
         let contentView = UIView()
@@ -52,7 +45,7 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    fileprivate lazy var usernameTextField : UITextField = {
+     lazy var usernameTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 16)
@@ -66,7 +59,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var passwordTextField : UITextField = {
+     lazy var passwordTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.layer.borderColor = UIColor.lightGray.cgColor
@@ -78,16 +71,11 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(named: "logoColor")
-        button.setTitle("Log in", for: .normal)
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowOpacity = 0.7
+    private lazy var customLoginButton : CustomButton = {
+        let button = CustomButton(title: "Log in", titleColor: .white, buttonColor: UIColor(named: "logoColor")!, action: "login")
+        button.loginButtonDelegate = self
+        button.alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+        button.vc = ProfileViewController()
         return button
     }()
     
@@ -137,7 +125,7 @@ class LogInViewController: UIViewController {
     private func setupContentOfScrollView() {
         contentView.addSubview(logoView)
         contentView.addSubview(credentialsBlock)
-        contentView.addSubview(loginButton)
+        contentView.addSubview(customLoginButton)
         
         NSLayoutConstraint.activate([
             logoView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -150,11 +138,11 @@ class LogInViewController: UIViewController {
             credentialsBlock.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 120.0),
             credentialsBlock.heightAnchor.constraint(equalToConstant: 105),
             
-            loginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            loginButton.topAnchor.constraint(equalTo: credentialsBlock.bottomAnchor, constant: 16.0),
-            loginButton.heightAnchor.constraint(equalToConstant: 50.0),
-            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
-            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
+            customLoginButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            customLoginButton.topAnchor.constraint(equalTo: credentialsBlock.bottomAnchor, constant: 16.0),
+            customLoginButton.heightAnchor.constraint(equalToConstant: 50.0),
+            customLoginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
+            customLoginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
         ])
     }
     @objc 
@@ -186,22 +174,6 @@ class LogInViewController: UIViewController {
     private func removeKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
-    }
-    
-    
-    @objc
-    private func loginButtonPressed() {
-        let pvc = ProfileViewController()
-        print(usernameTextField.text)
-        let alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
-        
-        print(self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!))
-        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
-            self.navigationController?.pushViewController(pvc, animated: true)
-        } else {
-            alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
     }
     
     private func addPadding(_ textField: UITextField) {

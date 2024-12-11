@@ -25,9 +25,10 @@ class FeedViewController: UIViewController {
    }()
     
     private lazy var checkGuessButton : CustomButton = {
-        let button = CustomButton(title: "Guess", titleColor: .white, buttonColor: .gray, action: "guess")
-        button.guessButtonDelegate = self
-        button.alert = UIAlertController(title: "Ошибка", message: "Некорретный логин", preferredStyle: .alert)
+        let button = CustomButton(title: "Guess", titleColor: .white, buttonColor: .gray) { [unowned self] in
+            guard let word = guessTextField.text else { return }
+            guess(word: word)
+        }
         return button
     }()
 
@@ -51,5 +52,15 @@ class FeedViewController: UIViewController {
             checkGuessButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16.0),
             checkGuessButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16.0),
         ])
+    }
+}
+
+extension FeedViewController {
+    func guess(word: String) {
+        if model.check(word: word) == true {
+            self.guessTextField.backgroundColor = .green
+        } else {
+            self.guessTextField.backgroundColor = .red
+        }
     }
 }

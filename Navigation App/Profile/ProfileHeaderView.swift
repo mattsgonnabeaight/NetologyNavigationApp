@@ -49,7 +49,8 @@ class ProfileHeaderView : UIView {
     }()
     
     private lazy var statusCustomButton : CustomButton = {
-        let button = CustomButton(title: "show status", titleColor: .white, buttonColor: .black, action: "status")
+        let button = CustomButton(title: "show status", titleColor: .white, buttonColor: .black) { [unowned self] in
+        }
         return button
     }()
     

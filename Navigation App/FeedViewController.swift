@@ -1,44 +1,28 @@
-//
-//  FeedViewController.swift
-//  Navigation
-//
-//  Created by Matvey Krasnov on 7.8.24..
-//
-
 import UIKit
 import StorageService
 
 class FeedViewController: UIViewController {
 
     var model = FeedModel()
+    let feedViewModel = FeedViewModel()
     
-    lazy var guessTextField : UITextField = {
-       let textField = UITextField()
-       textField.translatesAutoresizingMaskIntoConstraints = false
-       textField.font = UIFont.systemFont(ofSize: 16)
-       textField.layer.borderColor = UIColor.lightGray.cgColor
-       textField.layer.borderWidth = 0.5
-       textField.placeholder = "Email or phone"
-       textField.autocapitalizationType = .none
-       textField.textColor = .black
-       return textField
-   }()
+    lazy var guessTextField = feedViewModel.textField
+    lazy var checkGuessButton = feedViewModel.guessButton
     
-    private lazy var checkGuessButton : CustomButton = {
-        let button = CustomButton(title: "Guess", titleColor: .white, buttonColor: .gray) { [unowned self] in
-            guard let word = guessTextField.text else { return }
-            guess(word: word)
-        }
-        return button
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .darkGray
+        setupViews()
+        setupConstraints()
         
+    }
+    
+    func setupViews() {
         view.addSubview(guessTextField)
         view.addSubview(checkGuessButton)
-        
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             guessTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             guessTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
@@ -52,15 +36,5 @@ class FeedViewController: UIViewController {
             checkGuessButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16.0),
             checkGuessButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16.0),
         ])
-    }
-}
-
-extension FeedViewController {
-    func guess(word: String) {
-        if model.check(word: word) == true {
-            self.guessTextField.backgroundColor = .green
-        } else {
-            self.guessTextField.backgroundColor = .red
-        }
     }
 }

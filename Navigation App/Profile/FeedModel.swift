@@ -1,10 +1,3 @@
-//
-//  FeedModel.swift
-//  Navigation App
-//
-//  Created by Matvey Krasnov on 1.12.24..
-//
-
 import UIKit
 
 class FeedModel {

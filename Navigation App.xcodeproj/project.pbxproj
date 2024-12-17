@@ -222,7 +222,6 @@
 				901EB5192C69D4E500AC0157 /* LaunchScreen.storyboard */,
 				901EB51C2C69D4E500AC0157 /* Info.plist */,
 				901EB5222C69D52900AC0157 /* InfoViewController.swift */,
-				901EB5262C69D57100AC0157 /* FeedViewController.swift */,
 				901EB5612C77213C00AC0157 /* UITableView.swift */,
 			);
 			path = "Navigation App";
@@ -252,6 +251,7 @@
 				901EB52F2C72258200AC0157 /* LogInViewController.swift */,
 				9065E9822CCEA20700620C0C /* LogInInspector.swift */,
 				90FBC9D12D10B55E005A2AFC /* FeedViewModel.swift */,
+				901EB5262C69D57100AC0157 /* FeedViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

@@ -48,29 +48,11 @@ class ProfileHeaderView : UIView {
         return label
     }()
     
-    let statusButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("Show status", for: .normal)
-#if DEBUG
-        button.backgroundColor = UIColor.black
-#else
-        button.backgroundColor = UIColor(named: "logoColor")
-#endif
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(nil, action: #selector(showStatusButtonPressed), for: .touchUpInside)
-        button.layer.cornerRadius = 8
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowOpacity = 0.7
+    private lazy var statusCustomButton : CustomButton = {
+        let button = CustomButton(title: "show status", titleColor: .white, buttonColor: .black) { [unowned self] in
+        }
         return button
     }()
-    
-    
-    
-    @objc 
-    func showStatusButtonPressed() {
-        print("button pressed")
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -95,7 +77,7 @@ class ProfileHeaderView : UIView {
         self.addSubview(profileImage)
         self.addSubview(fullNameLabel)
         self.addSubview(someLabel)
-        self.addSubview(statusButton)
+        self.addSubview(statusCustomButton)
     }
     
     @objc
@@ -127,9 +109,9 @@ class ProfileHeaderView : UIView {
             make.width.equalTo(200.0)
             make.height.equalTo(20.0)
             make.leading.equalTo(snp_centerXWithinMargins).offset(-30.0)
-            make.bottom.equalTo(statusButton.snp_topMargin).offset(-34.0)
+            make.bottom.equalTo(statusCustomButton.snp_topMargin).offset(-34.0)
         }
-        statusButton.snp.makeConstraints { (make) -> Void in
+        statusCustomButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(50.0)
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(16.0)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-16.0)

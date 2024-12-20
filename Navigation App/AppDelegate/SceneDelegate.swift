@@ -16,23 +16,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = MainCoordinator().start()
         window?.makeKeyAndVisible()
-//        let tabBarController = UITabBarController()
-//        let feedNavigationController = UINavigationController()
-//        let profileNavigationController = UINavigationController()
-//        let logInViewController = LogInViewController()
-//        
-//        feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag:  0)
-//        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag:  1)
-//        
-//        feedNavigationController.viewControllers = [FeedViewController()]
-//        
-//        profileNavigationController.viewControllers = [logInViewController]
-//
-//        logInViewController.loginDelegate = MyLoginFactory().makeLoginInspector()
-//        tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
-//        tabBarController.tabBar.backgroundColor = .systemBackground
-//        
-//        window?.rootViewController = tabBarController
-//        window?.makeKeyAndVisible()
+        let tabBarController = UITabBarController()
+        let feedNavigationController = UINavigationController()
+        let profileNavigationController = UINavigationController()
+        let logInViewController = LogInViewController()
+        
+        feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag:  0)
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag:  1)
+        
+        feedNavigationController.viewControllers = [FeedViewController()]
+        
+        profileNavigationController.viewControllers = [logInViewController]
+
+        logInViewController.loginDelegate = MyLoginFactory().makeLoginInspector()
+        tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
+        tabBarController.tabBar.backgroundColor = .systemBackground
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
     }
 }

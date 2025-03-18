@@ -47,6 +47,10 @@
 		908772F72CB86870002784C7 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F62CB86870002784C7 /* TestUserService.swift */; };
 		90FBC9CE2D10B352005A2AFC /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 90FBC9CD2D10B352005A2AFC /* iOSIntPackage */; };
 		90FBC9D22D10B55E005A2AFC /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBC9D12D10B55E005A2AFC /* FeedViewModel.swift */; };
+		90FBC9D52D13582D005A2AFC /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBC9D42D13582D005A2AFC /* BaseCoordinator.swift */; };
+		90FBC9D72D13587A005A2AFC /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBC9D62D13587A005A2AFC /* MainCoordinator.swift */; };
+		90FBC9DA2D135EAB005A2AFC /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBC9D92D135EAB005A2AFC /* FeedCoordinator.swift */; };
+		90FBC9DC2D1552F3005A2AFC /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBC9DB2D1552F3005A2AFC /* LoginCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,10 @@
 		908772F42CB865CA002784C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		908772F62CB86870002784C7 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		90FBC9D12D10B55E005A2AFC /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		90FBC9D42D13582D005A2AFC /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		90FBC9D62D13587A005A2AFC /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		90FBC9D92D135EAB005A2AFC /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		90FBC9DB2D1552F3005A2AFC /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		9A01F18250F293D5A33DCE72 /* Pods_StorageService_StorageServiceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService_StorageServiceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41BE46AB8A5772AB03EE9A /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD0B5B1456745CD4B293D962 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,9 +223,8 @@
 		901EB50D2C69D4E300AC0157 /* Navigation App */ = {
 			isa = PBXGroup;
 			children = (
+				90FBC9D32D1357FC005A2AFC /* AppDelegate */,
 				901EB52A2C69D8E300AC0157 /* Profile */,
-				901EB50E2C69D4E300AC0157 /* AppDelegate.swift */,
-				901EB5102C69D4E300AC0157 /* SceneDelegate.swift */,
 				901EB5172C69D4E500AC0157 /* Assets.xcassets */,
 				901EB5192C69D4E500AC0157 /* LaunchScreen.storyboard */,
 				901EB51C2C69D4E500AC0157 /* Info.plist */,
@@ -272,6 +279,27 @@
 				907C98B12CA72BC400BD470F /* StorageServiceTests.swift */,
 			);
 			path = StorageServiceTests;
+			sourceTree = "<group>";
+		};
+		90FBC9D32D1357FC005A2AFC /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				90FBC9D82D135E93005A2AFC /* Flows */,
+				901EB50E2C69D4E300AC0157 /* AppDelegate.swift */,
+				901EB5102C69D4E300AC0157 /* SceneDelegate.swift */,
+				90FBC9D42D13582D005A2AFC /* BaseCoordinator.swift */,
+				90FBC9D62D13587A005A2AFC /* MainCoordinator.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		90FBC9D82D135E93005A2AFC /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				90FBC9D92D135EAB005A2AFC /* FeedCoordinator.swift */,
+				90FBC9DB2D1552F3005A2AFC /* LoginCoordinator.swift */,
+			);
+			path = Flows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,8 +561,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				901EB5B42C80E38500AC0157 /* Reusable.swift in Sources */,
+				90FBC9D72D13587A005A2AFC /* MainCoordinator.swift in Sources */,
 				901EB5B22C80E2B700AC0157 /* Photo.swift in Sources */,
 				901EB5602C77199E00AC0157 /* PostTableViewCell.swift in Sources */,
+				90FBC9DA2D135EAB005A2AFC /* FeedCoordinator.swift in Sources */,
 				908772F12CB86572002784C7 /* CurrentUserService.swift in Sources */,
 				901EB50F2C69D4E300AC0157 /* AppDelegate.swift in Sources */,
 				901EB5642C7741DD00AC0157 /* PostDetailsViewController.swift in Sources */,
@@ -542,6 +572,7 @@
 				901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */,
 				908772F72CB86870002784C7 /* TestUserService.swift in Sources */,
 				901EB5622C77213C00AC0157 /* UITableView.swift in Sources */,
+				90FBC9DC2D1552F3005A2AFC /* LoginCoordinator.swift in Sources */,
 				901EB5112C69D4E300AC0157 /* SceneDelegate.swift in Sources */,
 				901EB5B62C80E45000AC0157 /* PhotoCell.swift in Sources */,
 				90FBC9D22D10B55E005A2AFC /* FeedViewModel.swift in Sources */,
@@ -551,6 +582,7 @@
 				901EB5272C69D57100AC0157 /* FeedViewController.swift in Sources */,
 				908772ED2CB863F7002784C7 /* User.swift in Sources */,
 				9065E9A02CCF717C00620C0C /* MyLoginFactory.swift in Sources */,
+				90FBC9D52D13582D005A2AFC /* BaseCoordinator.swift in Sources */,
 				9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */,
 				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
 				9084E16A2CFC76570058DD61 /* CustomButton.swift in Sources */,

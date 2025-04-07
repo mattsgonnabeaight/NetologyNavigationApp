@@ -201,13 +201,55 @@ protocol LogInViewControllerDelegate {
     func check(login: String, password: String) -> Bool
 }
 
+//extension LogInViewController {
+//    func loginInProfile() {
+//        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
+//                    self.navigationController?.pushViewController(pvc, animated: true)
+//                } else {
+//                    alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//    }
+//}
 extension LogInViewController {
     func loginInProfile() {
-        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
-                    self.navigationController?.pushViewController(pvc, animated: true)
-                } else {
-                    alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
+        do {
+            try attemptLogin()
+            self.navigationController?.pushViewController(pvc, animated: true)
+        } catch let error as LoginError {
+            presentErrorAlert(for: error)
+        } catch {
+            print("Unexpected error: \(error)")
+        }
+    }
+
+    private func attemptLogin() throws {
+        guard let username = usernameTextField.text, !username.isEmpty else {
+            throw LoginError.emptyUsername
+        }
+
+        guard let password = passwordTextField.text, !password.isEmpty else {
+            throw LoginError.emptyPassword
+        }
+
+        guard loginDelegate?.check(login: username, password: password) == true else {
+            throw LoginError.invalidCredentials
+        }
+    }
+
+    private func presentErrorAlert(for error: LoginError) {
+        let alert = UIAlertController(title: "Ошибка входа", message: nil, preferredStyle: .alert)
+
+        switch error {
+        case .emptyUsername:
+            alert.message = "Пожалуйста, введите имя пользователя."
+        case .emptyPassword:
+            alert.message = "Пожалуйста, введите пароль."
+        case .invalidCredentials:
+            alert.message = "Неверное имя пользователя или пароль."
+        }
+
+        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        present(alert, animated: true)
     }
 }

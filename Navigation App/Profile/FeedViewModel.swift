@@ -4,10 +4,22 @@ class FeedViewModel {
 
     
     func guess(word: String, model: FeedModel, vc: FeedViewController) {
-        if model.check(word: word) == true {
+        let result = checkGuess(word: word, model: model)
+
+        switch result {
+        case .success:
             vc.textField.backgroundColor = .green
-        } else {
+        case .failure:
             vc.textField.backgroundColor = .red
         }
     }
+
+    func checkGuess(word: String, model: FeedModel) -> Result<Void, GuessError> {
+        if model.check(word: word) {
+            return .success(())
+        } else {
+            return .failure(.incorrectGuess)
+        }
+    }
+
 }

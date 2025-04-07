@@ -82,10 +82,23 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         setupViews()
-        setupConstraints()
         setupContentOfScrollView()
-        
+        setupConstraints()
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
     }
+    
+    var didAppearOnce = false
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if !didAppearOnce {
+            didAppearOnce = true
+            usernameTextField.becomeFirstResponder()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -105,8 +118,7 @@ class LogInViewController: UIViewController {
         credentialsBlock.addArrangedSubview(self.usernameTextField)
         credentialsBlock.addArrangedSubview(self.passwordTextField)
         
-        usernameTextField.delegate = self
-        passwordTextField.delegate = self
+        
     }
         
     private func setupConstraints() {
@@ -150,21 +162,34 @@ class LogInViewController: UIViewController {
             customLoginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
         ])
     }
-    @objc 
-    func willShowKeyboard(_ notification: NSNotification) {
-        lazy var keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+    
+    @objc func willShowKeyboard(_ notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        let extraPadding: CGFloat = 80 
+
+        scrollView.contentInset.bottom = keyboardHeight + extraPadding
+        scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight + extraPadding
+
+        let loginButtonFrameInScroll = scrollView.convert(customLoginButton.frame, from: contentView)
+
+        if loginButtonFrameInScroll.maxY > (view.frame.height - keyboardHeight) {
+            scrollView.scrollRectToVisible(loginButtonFrameInScroll, animated: true)
+        }
     }
         
     @objc func willHideKeyboard(_ notification: NSNotification) {
-        scrollView.contentInset.bottom = 0.0
+        scrollView.contentInset.bottom = 0
+        scrollView.verticalScrollIndicatorInsets.bottom = 0
     }
     
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(
             self,
-            selector: #selector(self.willShowKeyboard(_:)),
-            name: UIResponder.keyboardWillShowNotification,
+            selector: #selector(self.keyboardWillChangeFrame(_:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
             
@@ -186,6 +211,34 @@ class LogInViewController: UIViewController {
         textField.leftView = paddingView
         textField.leftViewMode = .always
     }
+    
+    @objc func keyboardWillChangeFrame(_ notification: NSNotification) {
+        guard
+            let userInfo = notification.userInfo,
+            let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
+            let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
+        else { return }
+
+        let keyboardFrame = keyboardFrameValue.cgRectValue
+        let keyboardHeight = view.frame.height - keyboardFrame.origin.y
+        let extraPadding: CGFloat = 80
+
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: curve << 16),
+            animations: {
+                self.scrollView.contentInset.bottom = keyboardHeight + extraPadding
+                self.scrollView.verticalScrollIndicatorInsets.bottom = keyboardHeight + extraPadding
+
+                let loginButtonFrameInScroll = self.scrollView.convert(self.customLoginButton.frame, from: self.contentView)
+                if loginButtonFrameInScroll.maxY > (self.view.frame.height - keyboardHeight) {
+                    self.scrollView.scrollRectToVisible(loginButtonFrameInScroll, animated: false)
+                }
+            }
+        )
+    }
 }
 
 extension LogInViewController: UITextFieldDelegate {
@@ -201,16 +254,6 @@ protocol LogInViewControllerDelegate {
     func check(login: String, password: String) -> Bool
 }
 
-//extension LogInViewController {
-//    func loginInProfile() {
-//        if self.loginDelegate?.check(login: usernameTextField.text!, password: passwordTextField.text!) == true {
-//                    self.navigationController?.pushViewController(pvc, animated: true)
-//                } else {
-//                    alert.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//    }
-//}
 extension LogInViewController {
     func loginInProfile() {
         do {

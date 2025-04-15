@@ -4,6 +4,7 @@ class FeedViewModel {
 
     
     func guess(word: String, model: FeedModel, vc: FeedViewController) {
+        vc.resetTimer()
         let result = checkGuess(word: word, model: model)
 
         switch result {
@@ -12,6 +13,7 @@ class FeedViewModel {
         case .failure:
             vc.textField.backgroundColor = .red
         }
+        vc.startGuessTimer()
     }
 
     func checkGuess(word: String, model: FeedModel) -> Result<Void, GuessError> {

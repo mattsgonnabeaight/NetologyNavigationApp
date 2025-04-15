@@ -5,6 +5,9 @@ class FeedViewController: UIViewController {
 
     let model = FeedModel()
     let feedViewModel = FeedViewModel()
+    var guessTimer: Timer?
+    var countdownTimer: Timer?
+    var remainingSeconds: Int = 10
     
     lazy var textField : UITextField = {
        let textField = UITextField()
@@ -17,6 +20,16 @@ class FeedViewController: UIViewController {
        textField.textColor = .black
        return textField
    }()
+    
+    lazy var countdownLabel: UILabel = {
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.textColor = .white
+            label.font = UIFont.boldSystemFont(ofSize: 18)
+            label.textAlignment = .center
+            label.text = "Time: 10"
+            return label
+        }()
     
     lazy var guessButton : CustomButton = {
         let button = CustomButton(title: "Guess", titleColor: .white, buttonColor: .gray) { [unowned self] in
@@ -31,12 +44,13 @@ class FeedViewController: UIViewController {
         self.view.backgroundColor = .darkGray
         setupViews()
         setupConstraints()
-        
+        startGuessTimer()
     }
     
     func setupViews() {
         view.addSubview(textField)
         view.addSubview(guessButton)
+        view.addSubview(countdownLabel)
     }
     
     func setupConstraints() {
@@ -52,6 +66,60 @@ class FeedViewController: UIViewController {
             guessButton.heightAnchor.constraint(equalToConstant: 50.0),
             guessButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16.0),
             guessButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16.0),
+            
+            countdownLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            countdownLabel.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -20)
         ])
+    }
+    
+    func startGuessTimer() {
+        guessTimer?.invalidate()
+        countdownTimer?.invalidate()
+        
+        remainingSeconds = 10
+        updateCountdownLabel()
+
+        guessTimer = Timer.scheduledTimer(timeInterval: 10.0,
+                                          target: self,
+                                          selector: #selector(timerFired),
+                                          userInfo: nil,
+                                          repeats: false)
+
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0,
+                                              target: self,
+                                              selector: #selector(updateCountdown),
+                                              userInfo: nil,
+                                              repeats: true)
+    }
+
+    @objc func updateCountdown() {
+        remainingSeconds -= 1
+        updateCountdownLabel()
+
+        if remainingSeconds <= 0 {
+            countdownTimer?.invalidate()
+        }
+    }
+
+    func updateCountdownLabel() {
+        countdownLabel.text = "Осталось времени чтобы угадать: \(remainingSeconds)"
+    }
+
+    func resetTimer() {
+        guessTimer?.invalidate()
+        countdownTimer?.invalidate()
+    }
+
+    @objc func timerFired() {
+        textField.backgroundColor = .gray
+        showTimeExpiredAlert()
+    }
+
+    func showTimeExpiredAlert() {
+        let alert = UIAlertController(title: "⏰ Время вышло!",
+                                      message: "Вы не успели ввести слово вовремя.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }

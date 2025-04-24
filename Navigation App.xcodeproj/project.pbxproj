@@ -47,6 +47,8 @@
 		908772F12CB86572002784C7 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F02CB86572002784C7 /* CurrentUserService.swift */; };
 		908772F52CB865CA002784C7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F42CB865CA002784C7 /* UserService.swift */; };
 		908772F72CB86870002784C7 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908772F62CB86870002784C7 /* TestUserService.swift */; };
+		90DB6E322DAEEBB0002CEB06 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB6E312DAEEBA9002CEB06 /* AppConfiguration.swift */; };
+		90DB6E342DAEEBEA002CEB06 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB6E332DAEEBE9002CEB06 /* NetworkService.swift */; };
 		90FBC9CE2D10B352005A2AFC /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 90FBC9CD2D10B352005A2AFC /* iOSIntPackage */; };
 		90FBC9D22D10B55E005A2AFC /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FBC9D12D10B55E005A2AFC /* FeedViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -131,6 +133,8 @@
 		908772F02CB86572002784C7 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		908772F42CB865CA002784C7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		908772F62CB86870002784C7 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		90DB6E312DAEEBA9002CEB06 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		90DB6E332DAEEBE9002CEB06 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		90FBC9D12D10B55E005A2AFC /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		9A01F18250F293D5A33DCE72 /* Pods_StorageService_StorageServiceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService_StorageServiceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41BE46AB8A5772AB03EE9A /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 		901EB52A2C69D8E300AC0157 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				90DB6E332DAEEBE9002CEB06 /* NetworkService.swift */,
+				90DB6E312DAEEBA9002CEB06 /* AppConfiguration.swift */,
 				908367402DA4441D005CF8BC /* GuessError.swift */,
 				9083673E2DA442DC005CF8BC /* LoginError.swift */,
 				9084E16B2CFCECD80058DD61 /* FeedModel.swift */,
@@ -548,6 +554,7 @@
 				901EB5302C72258200AC0157 /* LogInViewController.swift in Sources */,
 				901EB5232C69D52900AC0157 /* InfoViewController.swift in Sources */,
 				908772F72CB86870002784C7 /* TestUserService.swift in Sources */,
+				90DB6E342DAEEBEA002CEB06 /* NetworkService.swift in Sources */,
 				901EB5622C77213C00AC0157 /* UITableView.swift in Sources */,
 				901EB5112C69D4E300AC0157 /* SceneDelegate.swift in Sources */,
 				901EB5B62C80E45000AC0157 /* PhotoCell.swift in Sources */,
@@ -560,6 +567,7 @@
 				908772ED2CB863F7002784C7 /* User.swift in Sources */,
 				9065E9A02CCF717C00620C0C /* MyLoginFactory.swift in Sources */,
 				9065E9832CCEA20700620C0C /* LogInInspector.swift in Sources */,
+				90DB6E322DAEEBB0002CEB06 /* AppConfiguration.swift in Sources */,
 				901EB52E2C69D96C00AC0157 /* ProfileViewController.swift in Sources */,
 				9084E16A2CFC76570058DD61 /* CustomButton.swift in Sources */,
 				901EB5252C69D55100AC0157 /* PostViewController.swift in Sources */,

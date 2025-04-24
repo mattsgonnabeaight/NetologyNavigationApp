@@ -3,11 +3,22 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var appConfiguration: AppConfiguration?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = ( scene as? UIWindowScene) else { return }
+        
+        let urls = [
+                    AppConfiguration.people(URL(string: "https://swapi.dev/api/people/8")!),
+                    AppConfiguration.starship(URL(string: "https://swapi.dev/api/starships/3")!),
+                    AppConfiguration.planet(URL(string: "https://swapi.dev/api/planets/5")!)
+        ]
+        appConfiguration = urls.randomElement()
+        
+        if let config = appConfiguration {
+                    NetworkService.request(for: config)
+        }
         
         window = UIWindow(windowScene: windowScene)
         
